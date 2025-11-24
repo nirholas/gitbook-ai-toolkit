@@ -1,0 +1,44 @@
+{
+  "name": "@nirholas/gitbook-scraper",
+  "version": "1.0.0",
+  "description": "Scrape complete documentation from GitBook sites with API discovery, MCP tool generation, and versioning support",
+  "main": "./dist/index.js",
+  "type": "module",
+  "bin": {
+    "gitbook-scraper": "./src/scraper.ts",
+    "mcp-generator": "./src/mcp-generator.ts",
+    "example-extractor": "./src/example-extractor.ts"
+  },
+  "scripts": {
+    "scrape": "tsx src/scraper.ts",
+    "generate-mcp": "tsx src/mcp-generator.ts",
+    "generate-api-spec": "tsx src/api-spec-generator.ts",
+    "generate-chunks": "tsx src/chunk-generator.ts",
+    "generate-training-data": "tsx src/training-data-generator.ts",
+    "extract-examples": "tsx src/example-extractor.ts",
+    "build": "tsup src/scraper.ts src/mcp-generator.ts src/example-extractor.ts src/api-spec-generator.ts src/chunk-generator.ts src/training-data-generator.ts --format esm,cjs --dts",
+    "dev": "tsx watch src/scraper.ts",
+    "test": "tsx src/scraper.ts https://docs.sentry.io --output ./test-output"
+  },
+  "keywords": [
+    "gitbook",
+    "documentation",
+    "scraper",
+    "mcp",
+    "model-context-protocol",
+    "api-client-generator",
+    "ai-tools",
+    "versioned-docs"
+  ],
+  "author": "nirholas",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.10.1",
+    "cheerio": "^1.1.2",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
