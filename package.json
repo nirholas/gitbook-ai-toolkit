@@ -1,7 +1,7 @@
 {
-  "name": "@nirholas/gitbook-scraper",
+  "name": "@nirholas/gitbook-ai-toolkit",
   "version": "1.0.0",
-  "description": "Scrape complete documentation from GitBook sites with API discovery, MCP tool generation, and versioning support",
+  "description": "Scrape complete documentation from GitBook sites with API discovery, MCP tool generation, and versioning support. An entire toolkit in only a couple of clicks",
   "main": "./dist/index.js",
   "type": "module",
   "bin": {
