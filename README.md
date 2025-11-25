@@ -316,15 +316,13 @@ Contributions welcome! Areas for improvement:
 
 ## 📄 License
 
-MIT © nirholas
+MIT © [nirholas](https://github.com/nirholas) | [nich](https://x.com/nichxbt)
 
 ---
 
 ## 🔗 Related Tools
 
 - **[Mintlify Scraper](../mintlify-scraper/)** - For Mintlify documentation sites
-- **Docusaurus Scraper** - Coming soon
-- **ReadTheDocs Scraper** - Coming soon
 
 ---
 
