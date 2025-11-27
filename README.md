@@ -32,7 +32,6 @@
 ### Installation
 
 ```bash
-cd tools/gitbook-scraper
 npm install
 ```
 
