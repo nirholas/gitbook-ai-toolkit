@@ -2,6 +2,8 @@
 /**
  * MCP Tool Generator for GitBook Documentation
  * 
+ * Built with ❤️ by nich (https://github.com/nirholas) 👉 nich on X (https://x.com/nichxbt)
+ * 
  * Automatically generates MCP tool definitions from scraped GitBook API documentation
  * 
  * Usage:

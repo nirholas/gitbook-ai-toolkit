@@ -2,6 +2,8 @@
 /**
  * OpenAPI Specification Generator for GitBook Documentation
  * 
+ * Built with ❤️ by nich (https://github.com/nirholas) 👉 nich on X (https://x.com/nichxbt)
+ * 
  * Generates OpenAPI 3.0 specs from scraped GitBook documentation
  * Perfect for API client generation, Postman imports, and testing
  * 

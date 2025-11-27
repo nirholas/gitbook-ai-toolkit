@@ -189,7 +189,7 @@ cat output/sentry/COMPLETE.md
 
 ---
 
-## 🌍 Supported GitBook Sites
+## 🌍 Community Tested GitBooks
 
 ### Developer Tools
 - [Sentry](https://docs.sentry.io) - Error tracking
@@ -315,7 +315,9 @@ Contributions welcome! Areas for improvement:
 
 ## 📄 License
 
-MIT © [nirholas](https://github.com/nirholas) | [nich](https://x.com/nichxbt)
+MIT License - see [LICENSE](LICENSE) file for details
+
+**Built with** ❤️ **by** [nich](https://github.com/nirholas) 👉 [nich on X](https://x.com/nichxbt)
 
 ---
 

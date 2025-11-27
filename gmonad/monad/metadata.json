@@ -1,0 +1,1667 @@
+{
+  "baseUrl": "https://docs.monad.xyz",
+  "scrapedAt": "2025-11-27T04:08:09.806Z",
+  "totalPages": 184,
+  "sections": [
+    "markdown-page",
+    "reference",
+    "developer-essentials",
+    "execution-events",
+    "faq",
+    "guides",
+    "introduction",
+    "monad-arch",
+    "node-ops",
+    "official-links",
+    "templates",
+    "tooling-and-infra",
+    "root"
+  ],
+  "pages": [
+    {
+      "title": "Markdown page example",
+      "url": "https://docs.monad.xyz/markdown-page",
+      "path": "/markdown-page",
+      "section": "markdown-page",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Monad Developer Documentation",
+      "url": "https://docs.monad.xyz/reference/json-rpc/admin_ethCallStatistics",
+      "path": "/reference/json-rpc/admin_ethCallStatistics",
+      "section": "reference",
+      "subsection": "json-rpc",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Monad Developer Documentation",
+      "url": "https://docs.monad.xyz/reference/json-rpc/debug_getRawHeader",
+      "path": "/reference/json-rpc/debug_getRawHeader",
+      "section": "reference",
+      "subsection": "json-rpc",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Monad Developer Documentation",
+      "url": "https://docs.monad.xyz/reference/json-rpc/debug_getRawBlock",
+      "path": "/reference/json-rpc/debug_getRawBlock",
+      "section": "reference",
+      "subsection": "json-rpc",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Monad Developer Documentation",
+      "url": "https://docs.monad.xyz/reference/json-rpc/debug_getRawTransaction",
+      "path": "/reference/json-rpc/debug_getRawTransaction",
+      "section": "reference",
+      "subsection": "json-rpc",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Monad Developer Documentation",
+      "url": "https://docs.monad.xyz/reference/json-rpc/debug_getRawReceipts",
+      "path": "/reference/json-rpc/debug_getRawReceipts",
+      "section": "reference",
+      "subsection": "json-rpc",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Monad Developer Documentation",
+      "url": "https://docs.monad.xyz/reference/json-rpc/debug_traceBlockByNumber",
+      "path": "/reference/json-rpc/debug_traceBlockByNumber",
+      "section": "reference",
+      "subsection": "json-rpc",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Monad Developer Documentation",
+      "url": "https://docs.monad.xyz/reference/json-rpc/debug_traceBlockByHash",
+      "path": "/reference/json-rpc/debug_traceBlockByHash",
+      "section": "reference",
+      "subsection": "json-rpc",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Monad Developer Documentation",
+      "url": "https://docs.monad.xyz/reference/json-rpc/debug_traceTransaction",
+      "path": "/reference/json-rpc/debug_traceTransaction",
+      "section": "reference",
+      "subsection": "json-rpc",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Monad Developer Documentation",
+      "url": "https://docs.monad.xyz/reference/json-rpc/debug_traceCall",
+      "path": "/reference/json-rpc/debug_traceCall",
+      "section": "reference",
+      "subsection": "json-rpc",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Monad Developer Documentation",
+      "url": "https://docs.monad.xyz/reference/json-rpc/eth_call",
+      "path": "/reference/json-rpc/eth_call",
+      "section": "reference",
+      "subsection": "json-rpc",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Monad Developer Documentation",
+      "url": "https://docs.monad.xyz/reference/json-rpc/eth_blockNumber",
+      "path": "/reference/json-rpc/eth_blockNumber",
+      "section": "reference",
+      "subsection": "json-rpc",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Monad Developer Documentation",
+      "url": "https://docs.monad.xyz/reference/json-rpc/eth_chainId",
+      "path": "/reference/json-rpc/eth_chainId",
+      "section": "reference",
+      "subsection": "json-rpc",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Monad Developer Documentation",
+      "url": "https://docs.monad.xyz/reference/json-rpc/eth_createAccessList",
+      "path": "/reference/json-rpc/eth_createAccessList",
+      "section": "reference",
+      "subsection": "json-rpc",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Monad Developer Documentation",
+      "url": "https://docs.monad.xyz/reference/json-rpc/eth_estimateGas",
+      "path": "/reference/json-rpc/eth_estimateGas",
+      "section": "reference",
+      "subsection": "json-rpc",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Monad Developer Documentation",
+      "url": "https://docs.monad.xyz/reference/json-rpc/eth_feeHistory",
+      "path": "/reference/json-rpc/eth_feeHistory",
+      "section": "reference",
+      "subsection": "json-rpc",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Monad Developer Documentation",
+      "url": "https://docs.monad.xyz/reference/json-rpc/eth_getBalance",
+      "path": "/reference/json-rpc/eth_getBalance",
+      "section": "reference",
+      "subsection": "json-rpc",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Monad Developer Documentation",
+      "url": "https://docs.monad.xyz/reference/json-rpc/eth_gasPrice",
+      "path": "/reference/json-rpc/eth_gasPrice",
+      "section": "reference",
+      "subsection": "json-rpc",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Monad Developer Documentation",
+      "url": "https://docs.monad.xyz/reference/json-rpc/eth_getBlockByHash",
+      "path": "/reference/json-rpc/eth_getBlockByHash",
+      "section": "reference",
+      "subsection": "json-rpc",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Monad Developer Documentation",
+      "url": "https://docs.monad.xyz/reference/json-rpc/eth_getBlockByNumber",
+      "path": "/reference/json-rpc/eth_getBlockByNumber",
+      "section": "reference",
+      "subsection": "json-rpc",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Monad Developer Documentation",
+      "url": "https://docs.monad.xyz/reference/json-rpc/eth_getBlockReceipts",
+      "path": "/reference/json-rpc/eth_getBlockReceipts",
+      "section": "reference",
+      "subsection": "json-rpc",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Monad Developer Documentation",
+      "url": "https://docs.monad.xyz/reference/json-rpc/eth_getBlockTransactionCountByHash",
+      "path": "/reference/json-rpc/eth_getBlockTransactionCountByHash",
+      "section": "reference",
+      "subsection": "json-rpc",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Monad Developer Documentation",
+      "url": "https://docs.monad.xyz/reference/json-rpc/eth_getCode",
+      "path": "/reference/json-rpc/eth_getCode",
+      "section": "reference",
+      "subsection": "json-rpc",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Monad Developer Documentation",
+      "url": "https://docs.monad.xyz/reference/json-rpc/eth_getBlockTransactionCountByNumber",
+      "path": "/reference/json-rpc/eth_getBlockTransactionCountByNumber",
+      "section": "reference",
+      "subsection": "json-rpc",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Monad Developer Documentation",
+      "url": "https://docs.monad.xyz/reference/json-rpc/eth_getStorageAt",
+      "path": "/reference/json-rpc/eth_getStorageAt",
+      "section": "reference",
+      "subsection": "json-rpc",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Monad Developer Documentation",
+      "url": "https://docs.monad.xyz/reference/json-rpc/eth_getLogs",
+      "path": "/reference/json-rpc/eth_getLogs",
+      "section": "reference",
+      "subsection": "json-rpc",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Monad Developer Documentation",
+      "url": "https://docs.monad.xyz/reference/json-rpc/eth_getTransactionByBlockNumberAndIndex",
+      "path": "/reference/json-rpc/eth_getTransactionByBlockNumberAndIndex",
+      "section": "reference",
+      "subsection": "json-rpc",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Monad Developer Documentation",
+      "url": "https://docs.monad.xyz/reference/json-rpc/eth_getTransactionByBlockHashAndIndex",
+      "path": "/reference/json-rpc/eth_getTransactionByBlockHashAndIndex",
+      "section": "reference",
+      "subsection": "json-rpc",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Monad Developer Documentation",
+      "url": "https://docs.monad.xyz/reference/json-rpc/eth_getTransactionByHash",
+      "path": "/reference/json-rpc/eth_getTransactionByHash",
+      "section": "reference",
+      "subsection": "json-rpc",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Monad Developer Documentation",
+      "url": "https://docs.monad.xyz/reference/json-rpc/eth_getTransactionCount",
+      "path": "/reference/json-rpc/eth_getTransactionCount",
+      "section": "reference",
+      "subsection": "json-rpc",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Monad Developer Documentation",
+      "url": "https://docs.monad.xyz/reference/json-rpc/eth_getTransactionReceipt",
+      "path": "/reference/json-rpc/eth_getTransactionReceipt",
+      "section": "reference",
+      "subsection": "json-rpc",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Monad Developer Documentation",
+      "url": "https://docs.monad.xyz/reference/json-rpc/eth_maxPriorityFeePerGas",
+      "path": "/reference/json-rpc/eth_maxPriorityFeePerGas",
+      "section": "reference",
+      "subsection": "json-rpc",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Monad Developer Documentation",
+      "url": "https://docs.monad.xyz/reference/json-rpc/eth_sendRawTransaction",
+      "path": "/reference/json-rpc/eth_sendRawTransaction",
+      "section": "reference",
+      "subsection": "json-rpc",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Monad Developer Documentation",
+      "url": "https://docs.monad.xyz/reference/json-rpc/eth_syncing",
+      "path": "/reference/json-rpc/eth_syncing",
+      "section": "reference",
+      "subsection": "json-rpc",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Monad Developer Documentation",
+      "url": "https://docs.monad.xyz/reference/json-rpc/net_version",
+      "path": "/reference/json-rpc/net_version",
+      "section": "reference",
+      "subsection": "json-rpc",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Monad Developer Documentation",
+      "url": "https://docs.monad.xyz/reference/json-rpc/txpool_statusByAddress",
+      "path": "/reference/json-rpc/txpool_statusByAddress",
+      "section": "reference",
+      "subsection": "json-rpc",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Monad Developer Documentation",
+      "url": "https://docs.monad.xyz/reference/json-rpc/txpool_statusByHash",
+      "path": "/reference/json-rpc/txpool_statusByHash",
+      "section": "reference",
+      "subsection": "json-rpc",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Monad Developer Documentation",
+      "url": "https://docs.monad.xyz/reference/json-rpc/web3_clientVersion",
+      "path": "/reference/json-rpc/web3_clientVersion",
+      "section": "reference",
+      "subsection": "json-rpc",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Developer Essentials",
+      "url": "https://docs.monad.xyz/developer-essentials/",
+      "path": "/developer-essentials/",
+      "section": "developer-essentials",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Best Practices for Building High Performance Apps",
+      "url": "https://docs.monad.xyz/developer-essentials/best-practices",
+      "path": "/developer-essentials/best-practices",
+      "section": "developer-essentials",
+      "subsection": "best-practices",
+      "hasApi": false,
+      "codeExamplesCount": 9
+    },
+    {
+      "title": "Differences between Monad and Ethereum",
+      "url": "https://docs.monad.xyz/developer-essentials/differences",
+      "path": "/developer-essentials/differences",
+      "section": "developer-essentials",
+      "subsection": "differences",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "EIP-7702 on Monad",
+      "url": "https://docs.monad.xyz/developer-essentials/eip-7702",
+      "path": "/developer-essentials/eip-7702",
+      "section": "developer-essentials",
+      "subsection": "eip-7702",
+      "hasApi": false,
+      "codeExamplesCount": 1
+    },
+    {
+      "title": "Gas Pricing",
+      "url": "https://docs.monad.xyz/developer-essentials/gas-pricing",
+      "path": "/developer-essentials/gas-pricing",
+      "section": "developer-essentials",
+      "subsection": "gas-pricing",
+      "hasApi": false,
+      "codeExamplesCount": 2
+    },
+    {
+      "title": "Faucet",
+      "url": "https://docs.monad.xyz/developer-essentials/faucet",
+      "path": "/developer-essentials/faucet",
+      "section": "developer-essentials",
+      "subsection": "faucet",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Historical Data",
+      "url": "https://docs.monad.xyz/developer-essentials/historical-data",
+      "path": "/developer-essentials/historical-data",
+      "section": "developer-essentials",
+      "subsection": "historical-data",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Network Information - Mainnet",
+      "url": "https://docs.monad.xyz/developer-essentials/network-information",
+      "path": "/developer-essentials/network-information",
+      "section": "developer-essentials",
+      "subsection": "network-information",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Precompiles",
+      "url": "https://docs.monad.xyz/developer-essentials/precompiles",
+      "path": "/developer-essentials/precompiles",
+      "section": "developer-essentials",
+      "subsection": "precompiles",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Opcode Pricing",
+      "url": "https://docs.monad.xyz/developer-essentials/opcode-pricing",
+      "path": "/developer-essentials/opcode-pricing",
+      "section": "developer-essentials",
+      "subsection": "opcode-pricing",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Reserve Balance",
+      "url": "https://docs.monad.xyz/developer-essentials/reserve-balance",
+      "path": "/developer-essentials/reserve-balance",
+      "section": "developer-essentials",
+      "subsection": "reserve-balance",
+      "hasApi": false,
+      "codeExamplesCount": 26
+    },
+    {
+      "title": "Staking",
+      "url": "https://docs.monad.xyz/developer-essentials/staking/",
+      "path": "/developer-essentials/staking/",
+      "section": "developer-essentials",
+      "subsection": "staking",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Staking Behavior",
+      "url": "https://docs.monad.xyz/developer-essentials/staking/staking-behavior",
+      "path": "/developer-essentials/staking/staking-behavior",
+      "section": "developer-essentials",
+      "subsection": "staking",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Staking Precompile",
+      "url": "https://docs.monad.xyz/developer-essentials/staking/staking-precompile",
+      "path": "/developer-essentials/staking/staking-precompile",
+      "section": "developer-essentials",
+      "subsection": "staking",
+      "hasApi": false,
+      "codeExamplesCount": 66
+    },
+    {
+      "title": "Deployment Summary for Developers",
+      "url": "https://docs.monad.xyz/developer-essentials/summary",
+      "path": "/developer-essentials/summary",
+      "section": "developer-essentials",
+      "subsection": "summary",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Network Information - Testnets",
+      "url": "https://docs.monad.xyz/developer-essentials/testnets",
+      "path": "/developer-essentials/testnets",
+      "section": "developer-essentials",
+      "subsection": "testnets",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Execution Events",
+      "url": "https://docs.monad.xyz/execution-events/",
+      "path": "/execution-events/",
+      "section": "execution-events",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Transactions",
+      "url": "https://docs.monad.xyz/developer-essentials/transactions",
+      "path": "/developer-essentials/transactions",
+      "section": "developer-essentials",
+      "subsection": "transactions",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "C API",
+      "url": "https://docs.monad.xyz/execution-events/c-api",
+      "path": "/execution-events/c-api",
+      "section": "execution-events",
+      "subsection": "c-api",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Advanced topics",
+      "url": "https://docs.monad.xyz/execution-events/advanced",
+      "path": "/execution-events/advanced",
+      "section": "execution-events",
+      "subsection": "advanced",
+      "hasApi": false,
+      "codeExamplesCount": 6
+    },
+    {
+      "title": "Consensus events",
+      "url": "https://docs.monad.xyz/execution-events/consensus-events",
+      "path": "/execution-events/consensus-events",
+      "section": "execution-events",
+      "subsection": "consensus-events",
+      "hasApi": false,
+      "codeExamplesCount": 5
+    },
+    {
+      "title": "Event rings in detail",
+      "url": "https://docs.monad.xyz/execution-events/event-ring",
+      "path": "/execution-events/event-ring",
+      "section": "execution-events",
+      "subsection": "event-ring",
+      "hasApi": false,
+      "codeExamplesCount": 13
+    },
+    {
+      "title": "Building the C example program",
+      "url": "https://docs.monad.xyz/execution-events/getting-started/c",
+      "path": "/execution-events/getting-started/c",
+      "section": "execution-events",
+      "subsection": "getting-started",
+      "hasApi": false,
+      "codeExamplesCount": 11
+    },
+    {
+      "title": "Getting started",
+      "url": "https://docs.monad.xyz/execution-events/getting-started/",
+      "path": "/execution-events/getting-started/",
+      "section": "execution-events",
+      "subsection": "getting-started",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Building the Rust example program",
+      "url": "https://docs.monad.xyz/execution-events/getting-started/rust",
+      "path": "/execution-events/getting-started/rust",
+      "section": "execution-events",
+      "subsection": "getting-started",
+      "hasApi": false,
+      "codeExamplesCount": 9
+    },
+    {
+      "title": "Running the example program on live data, and next steps",
+      "url": "https://docs.monad.xyz/execution-events/getting-started/final",
+      "path": "/execution-events/getting-started/final",
+      "section": "execution-events",
+      "subsection": "getting-started",
+      "hasApi": false,
+      "codeExamplesCount": 5
+    },
+    {
+      "title": "Setting up your Monad node",
+      "url": "https://docs.monad.xyz/execution-events/getting-started/setup-node",
+      "path": "/execution-events/getting-started/setup-node",
+      "section": "execution-events",
+      "subsection": "getting-started",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Running the example program on snapshot data",
+      "url": "https://docs.monad.xyz/execution-events/getting-started/snapshot",
+      "path": "/execution-events/getting-started/snapshot",
+      "section": "execution-events",
+      "subsection": "getting-started",
+      "hasApi": false,
+      "codeExamplesCount": 11
+    },
+    {
+      "title": "Execution events overview",
+      "url": "https://docs.monad.xyz/execution-events/overview",
+      "path": "/execution-events/overview",
+      "section": "execution-events",
+      "subsection": "overview",
+      "hasApi": false,
+      "codeExamplesCount": 5
+    },
+    {
+      "title": "Release notes",
+      "url": "https://docs.monad.xyz/execution-events/release-notes",
+      "path": "/execution-events/release-notes",
+      "section": "execution-events",
+      "subsection": "release-notes",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Frequently Asked Questions",
+      "url": "https://docs.monad.xyz/faq",
+      "path": "/faq",
+      "section": "faq",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Rust API",
+      "url": "https://docs.monad.xyz/execution-events/rust-api",
+      "path": "/execution-events/rust-api",
+      "section": "execution-events",
+      "subsection": "rust-api",
+      "hasApi": false,
+      "codeExamplesCount": 5
+    },
+    {
+      "title": "Add Monad to Wallet",
+      "url": "https://docs.monad.xyz/guides/add-monad-to-wallet/",
+      "path": "/guides/add-monad-to-wallet/",
+      "section": "guides",
+      "subsection": "add-monad-to-wallet",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Guides",
+      "url": "https://docs.monad.xyz/guides/",
+      "path": "/guides/",
+      "section": "guides",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Add Monad Testnet to Wallet",
+      "url": "https://docs.monad.xyz/guides/add-monad-to-wallet/testnet",
+      "path": "/guides/add-monad-to-wallet/testnet",
+      "section": "guides",
+      "subsection": "add-monad-to-wallet",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Add Monad Mainnet to Wallet",
+      "url": "https://docs.monad.xyz/guides/add-monad-to-wallet/mainnet",
+      "path": "/guides/add-monad-to-wallet/mainnet",
+      "section": "guides",
+      "subsection": "add-monad-to-wallet",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "How to build custom deep links in an Expo-based mobile app",
+      "url": "https://docs.monad.xyz/guides/deeplinks-using-expo",
+      "path": "/guides/deeplinks-using-expo",
+      "section": "guides",
+      "subsection": "deeplinks-using-expo",
+      "hasApi": false,
+      "codeExamplesCount": 15
+    },
+    {
+      "title": "How to build a donation blink",
+      "url": "https://docs.monad.xyz/guides/blinks-guide",
+      "path": "/guides/blinks-guide",
+      "section": "guides",
+      "subsection": "blinks-guide",
+      "hasApi": false,
+      "codeExamplesCount": 18
+    },
+    {
+      "title": "Deploy a Contract",
+      "url": "https://docs.monad.xyz/guides/deploy-smart-contract/",
+      "path": "/guides/deploy-smart-contract/",
+      "section": "guides",
+      "subsection": "deploy-smart-contract",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Deploy a smart contract on Monad using Foundry",
+      "url": "https://docs.monad.xyz/guides/deploy-smart-contract/foundry",
+      "path": "/guides/deploy-smart-contract/foundry",
+      "section": "guides",
+      "subsection": "deploy-smart-contract",
+      "hasApi": false,
+      "codeExamplesCount": 12
+    },
+    {
+      "title": "Deploy a smart contract on Monad using Remix",
+      "url": "https://docs.monad.xyz/guides/deploy-smart-contract/remix",
+      "path": "/guides/deploy-smart-contract/remix",
+      "section": "guides",
+      "subsection": "deploy-smart-contract",
+      "hasApi": false,
+      "codeExamplesCount": 1
+    },
+    {
+      "title": "Deploy a smart contract on Monad using Hardhat",
+      "url": "https://docs.monad.xyz/guides/deploy-smart-contract/hardhat",
+      "path": "/guides/deploy-smart-contract/hardhat",
+      "section": "guides",
+      "subsection": "deploy-smart-contract",
+      "hasApi": false,
+      "codeExamplesCount": 16
+    },
+    {
+      "title": "EVM Resources",
+      "url": "https://docs.monad.xyz/guides/evm-resources",
+      "path": "/guides/evm-resources",
+      "section": "guides",
+      "subsection": "evm-resources",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "EVM Resources",
+      "url": "https://docs.monad.xyz/guides/evm-resources/",
+      "path": "/guides/evm-resources/",
+      "section": "guides",
+      "subsection": "evm-resources",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "EVM Behavior",
+      "url": "https://docs.monad.xyz/guides/evm-resources/evm-behavior",
+      "path": "/guides/evm-resources/evm-behavior",
+      "section": "guides",
+      "subsection": "evm-resources",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Other Languages",
+      "url": "https://docs.monad.xyz/guides/evm-resources/other-languages",
+      "path": "/guides/evm-resources/other-languages",
+      "section": "guides",
+      "subsection": "evm-resources",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Other Languages",
+      "url": "https://docs.monad.xyz/guides/evm-resources/other-languages/",
+      "path": "/guides/evm-resources/other-languages/",
+      "section": "guides",
+      "subsection": "evm-resources",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Huff",
+      "url": "https://docs.monad.xyz/guides/evm-resources/other-languages/huff",
+      "path": "/guides/evm-resources/other-languages/huff",
+      "section": "guides",
+      "subsection": "evm-resources",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Yul",
+      "url": "https://docs.monad.xyz/guides/evm-resources/other-languages/yul",
+      "path": "/guides/evm-resources/other-languages/yul",
+      "section": "guides",
+      "subsection": "evm-resources",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Vyper",
+      "url": "https://docs.monad.xyz/guides/evm-resources/other-languages/vyper",
+      "path": "/guides/evm-resources/other-languages/vyper",
+      "section": "guides",
+      "subsection": "evm-resources",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Solidity Resources",
+      "url": "https://docs.monad.xyz/guides/evm-resources/solidity-resources",
+      "path": "/guides/evm-resources/solidity-resources",
+      "section": "guides",
+      "subsection": "evm-resources",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Use an Indexer",
+      "url": "https://docs.monad.xyz/guides/indexers/",
+      "path": "/guides/indexers/",
+      "section": "guides",
+      "subsection": "indexers",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "How to index every WMON transfer using QuickNode Streams",
+      "url": "https://docs.monad.xyz/guides/indexers/quicknode-streams",
+      "path": "/guides/indexers/quicknode-streams",
+      "section": "guides",
+      "subsection": "indexers",
+      "hasApi": false,
+      "codeExamplesCount": 1
+    },
+    {
+      "title": "How to index token transfers with GhostGraph",
+      "url": "https://docs.monad.xyz/guides/indexers/ghost",
+      "path": "/guides/indexers/ghost",
+      "section": "guides",
+      "subsection": "indexers",
+      "hasApi": false,
+      "codeExamplesCount": 18
+    },
+    {
+      "title": "How to build an MCP server that can interact with Monad Testnet",
+      "url": "https://docs.monad.xyz/guides/monad-mcp",
+      "path": "/guides/monad-mcp",
+      "section": "guides",
+      "subsection": "monad-mcp",
+      "hasApi": false,
+      "codeExamplesCount": 8
+    },
+    {
+      "title": "How to build a transfer notification bot with Envio HyperIndex",
+      "url": "https://docs.monad.xyz/guides/indexers/tg-bot-using-envio",
+      "path": "/guides/indexers/tg-bot-using-envio",
+      "section": "guides",
+      "subsection": "indexers",
+      "hasApi": false,
+      "codeExamplesCount": 11
+    },
+    {
+      "title": "How to build a basic dApp with Scaffold-ETH",
+      "url": "https://docs.monad.xyz/guides/scaffold-eth",
+      "path": "/guides/scaffold-eth",
+      "section": "guides",
+      "subsection": "scaffold-eth",
+      "hasApi": false,
+      "codeExamplesCount": 15
+    },
+    {
+      "title": "Getting Started with Reown AppKit on Monad Testnet using AppKit CLI",
+      "url": "https://docs.monad.xyz/guides/reown-guide",
+      "path": "/guides/reown-guide",
+      "section": "guides",
+      "subsection": "reown-guide",
+      "hasApi": false,
+      "codeExamplesCount": 5
+    },
+    {
+      "title": "Verify a smart contract on Monad using Foundry",
+      "url": "https://docs.monad.xyz/guides/verify-smart-contract/foundry",
+      "path": "/guides/verify-smart-contract/foundry",
+      "section": "guides",
+      "subsection": "verify-smart-contract",
+      "hasApi": false,
+      "codeExamplesCount": 38
+    },
+    {
+      "title": "Verify a Contract",
+      "url": "https://docs.monad.xyz/guides/verify-smart-contract/",
+      "path": "/guides/verify-smart-contract/",
+      "section": "guides",
+      "subsection": "verify-smart-contract",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Monad for Developers",
+      "url": "https://docs.monad.xyz/introduction/monad-for-developers",
+      "path": "/introduction/monad-for-developers",
+      "section": "introduction",
+      "subsection": "monad-for-developers",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Verify a smart contract on Monad using Hardhat",
+      "url": "https://docs.monad.xyz/guides/verify-smart-contract/hardhat",
+      "path": "/guides/verify-smart-contract/hardhat",
+      "section": "guides",
+      "subsection": "verify-smart-contract",
+      "hasApi": false,
+      "codeExamplesCount": 6
+    },
+    {
+      "title": "Why Blockchain?",
+      "url": "https://docs.monad.xyz/introduction/why-blockchain",
+      "path": "/introduction/why-blockchain",
+      "section": "introduction",
+      "subsection": "why-blockchain",
+      "hasApi": false,
+      "codeExamplesCount": 1
+    },
+    {
+      "title": "Monad for Users",
+      "url": "https://docs.monad.xyz/introduction/monad-for-users",
+      "path": "/introduction/monad-for-users",
+      "section": "introduction",
+      "subsection": "monad-for-users",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Monad Architecture",
+      "url": "https://docs.monad.xyz/monad-arch/",
+      "path": "/monad-arch/",
+      "section": "monad-arch",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Why Monad: Decentralization + Performance",
+      "url": "https://docs.monad.xyz/introduction/why-monad",
+      "path": "/introduction/why-monad",
+      "section": "introduction",
+      "subsection": "why-monad",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Concepts",
+      "url": "https://docs.monad.xyz/monad-arch/concepts",
+      "path": "/monad-arch/concepts",
+      "section": "monad-arch",
+      "subsection": "concepts",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Concepts",
+      "url": "https://docs.monad.xyz/monad-arch/concepts/",
+      "path": "/monad-arch/concepts/",
+      "section": "monad-arch",
+      "subsection": "concepts",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Pipelining",
+      "url": "https://docs.monad.xyz/monad-arch/concepts/pipelining",
+      "path": "/monad-arch/concepts/pipelining",
+      "section": "monad-arch",
+      "subsection": "concepts",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Asynchronous I/O",
+      "url": "https://docs.monad.xyz/monad-arch/concepts/asynchronous-io",
+      "path": "/monad-arch/concepts/asynchronous-io",
+      "section": "monad-arch",
+      "subsection": "concepts",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Consensus",
+      "url": "https://docs.monad.xyz/monad-arch/consensus/",
+      "path": "/monad-arch/consensus/",
+      "section": "monad-arch",
+      "subsection": "consensus",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Asynchronous Execution",
+      "url": "https://docs.monad.xyz/monad-arch/consensus/asynchronous-execution",
+      "path": "/monad-arch/consensus/asynchronous-execution",
+      "section": "monad-arch",
+      "subsection": "consensus",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Block States",
+      "url": "https://docs.monad.xyz/monad-arch/consensus/block-states",
+      "path": "/monad-arch/consensus/block-states",
+      "section": "monad-arch",
+      "subsection": "consensus",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Blocksync",
+      "url": "https://docs.monad.xyz/monad-arch/consensus/blocksync",
+      "path": "/monad-arch/consensus/blocksync",
+      "section": "monad-arch",
+      "subsection": "consensus",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Local Mempool",
+      "url": "https://docs.monad.xyz/monad-arch/consensus/local-mempool",
+      "path": "/monad-arch/consensus/local-mempool",
+      "section": "monad-arch",
+      "subsection": "consensus",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "MonadBFT",
+      "url": "https://docs.monad.xyz/monad-arch/consensus/monad-bft",
+      "path": "/monad-arch/consensus/monad-bft",
+      "section": "monad-arch",
+      "subsection": "consensus",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "RaptorCast",
+      "url": "https://docs.monad.xyz/monad-arch/consensus/raptorcast",
+      "path": "/monad-arch/consensus/raptorcast",
+      "section": "monad-arch",
+      "subsection": "consensus",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Peer Discovery",
+      "url": "https://docs.monad.xyz/monad-arch/consensus/peer-discovery",
+      "path": "/monad-arch/consensus/peer-discovery",
+      "section": "monad-arch",
+      "subsection": "consensus",
+      "hasApi": false,
+      "codeExamplesCount": 1
+    },
+    {
+      "title": "Statesync",
+      "url": "https://docs.monad.xyz/monad-arch/consensus/statesync",
+      "path": "/monad-arch/consensus/statesync",
+      "section": "monad-arch",
+      "subsection": "consensus",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Transport Protocol Usage",
+      "url": "https://docs.monad.xyz/monad-arch/consensus/transport-protocols",
+      "path": "/monad-arch/consensus/transport-protocols",
+      "section": "monad-arch",
+      "subsection": "consensus",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Execution",
+      "url": "https://docs.monad.xyz/monad-arch/execution/",
+      "path": "/monad-arch/execution/",
+      "section": "monad-arch",
+      "subsection": "execution",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "MonadDb",
+      "url": "https://docs.monad.xyz/monad-arch/execution/monaddb",
+      "path": "/monad-arch/execution/monaddb",
+      "section": "monad-arch",
+      "subsection": "execution",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Parallel Execution",
+      "url": "https://docs.monad.xyz/monad-arch/execution/parallel-execution",
+      "path": "/monad-arch/execution/parallel-execution",
+      "section": "monad-arch",
+      "subsection": "execution",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "JIT Compilation",
+      "url": "https://docs.monad.xyz/monad-arch/execution/native-compilation",
+      "path": "/monad-arch/execution/native-compilation",
+      "section": "monad-arch",
+      "subsection": "execution",
+      "hasApi": false,
+      "codeExamplesCount": 3
+    },
+    {
+      "title": "Real-Time Data Sources",
+      "url": "https://docs.monad.xyz/monad-arch/realtime-data/data-sources",
+      "path": "/monad-arch/realtime-data/data-sources",
+      "section": "monad-arch",
+      "subsection": "realtime-data",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Real-time Data",
+      "url": "https://docs.monad.xyz/monad-arch/realtime-data/",
+      "path": "/monad-arch/realtime-data/",
+      "section": "monad-arch",
+      "subsection": "realtime-data",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Transaction Lifecycle in Monad",
+      "url": "https://docs.monad.xyz/monad-arch/transaction-lifecycle",
+      "path": "/monad-arch/transaction-lifecycle",
+      "section": "monad-arch",
+      "subsection": "transaction-lifecycle",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Speculative Real-Time Data",
+      "url": "https://docs.monad.xyz/monad-arch/realtime-data/spec-realtime",
+      "path": "/monad-arch/realtime-data/spec-realtime",
+      "section": "monad-arch",
+      "subsection": "realtime-data",
+      "hasApi": false,
+      "codeExamplesCount": 1
+    },
+    {
+      "title": "Node Operations",
+      "url": "https://docs.monad.xyz/node-ops/",
+      "path": "/node-ops/",
+      "section": "node-ops",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Archive Data Setup",
+      "url": "https://docs.monad.xyz/node-ops/archive-data/",
+      "path": "/node-ops/archive-data/",
+      "section": "node-ops",
+      "subsection": "archive-data",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Configuring RPC to use archive data",
+      "url": "https://docs.monad.xyz/node-ops/archive-data/configuring-rpc",
+      "path": "/node-ops/archive-data/configuring-rpc",
+      "section": "node-ops",
+      "subsection": "archive-data",
+      "hasApi": false,
+      "codeExamplesCount": 15
+    },
+    {
+      "title": "The Data Waterfall",
+      "url": "https://docs.monad.xyz/node-ops/archive-data/data-waterfall",
+      "path": "/node-ops/archive-data/data-waterfall",
+      "section": "node-ops",
+      "subsection": "archive-data",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Execution Events and Websocket Setup",
+      "url": "https://docs.monad.xyz/node-ops/events-and-websockets",
+      "path": "/node-ops/events-and-websockets",
+      "section": "node-ops",
+      "subsection": "events-and-websockets",
+      "hasApi": false,
+      "codeExamplesCount": 14
+    },
+    {
+      "title": "Running an Archive Server",
+      "url": "https://docs.monad.xyz/node-ops/archive-data/running-an-archive-server",
+      "path": "/node-ops/archive-data/running-an-archive-server",
+      "section": "node-ops",
+      "subsection": "archive-data",
+      "hasApi": false,
+      "codeExamplesCount": 9
+    },
+    {
+      "title": "How Full Nodes Receive Blocks",
+      "url": "https://docs.monad.xyz/node-ops/full-node-block-delivery",
+      "path": "/node-ops/full-node-block-delivery",
+      "section": "node-ops",
+      "subsection": "full-node-block-delivery",
+      "hasApi": false,
+      "codeExamplesCount": 1
+    },
+    {
+      "title": "Full Node Installation",
+      "url": "https://docs.monad.xyz/node-ops/full-node-installation",
+      "path": "/node-ops/full-node-installation",
+      "section": "node-ops",
+      "subsection": "full-node-installation",
+      "hasApi": false,
+      "codeExamplesCount": 39
+    },
+    {
+      "title": "Hardware Requirements",
+      "url": "https://docs.monad.xyz/node-ops/hardware-requirements",
+      "path": "/node-ops/hardware-requirements",
+      "section": "node-ops",
+      "subsection": "hardware-requirements",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "General Operations",
+      "url": "https://docs.monad.xyz/node-ops/general-operations",
+      "path": "/node-ops/general-operations",
+      "section": "node-ops",
+      "subsection": "general-operations",
+      "hasApi": false,
+      "codeExamplesCount": 14
+    },
+    {
+      "title": "Recovering a Node",
+      "url": "https://docs.monad.xyz/node-ops/node-recovery/",
+      "path": "/node-ops/node-recovery/",
+      "section": "node-ops",
+      "subsection": "node-recovery",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Full Replay",
+      "url": "https://docs.monad.xyz/node-ops/node-recovery/full-replay",
+      "path": "/node-ops/node-recovery/full-replay",
+      "section": "node-ops",
+      "subsection": "node-recovery",
+      "hasApi": false,
+      "codeExamplesCount": 7
+    },
+    {
+      "title": "Soft Reset Instructions",
+      "url": "https://docs.monad.xyz/node-ops/node-recovery/soft-reset",
+      "path": "/node-ops/node-recovery/soft-reset",
+      "section": "node-ops",
+      "subsection": "node-recovery",
+      "hasApi": false,
+      "codeExamplesCount": 8
+    },
+    {
+      "title": "Hard Reset Instructions",
+      "url": "https://docs.monad.xyz/node-ops/node-recovery/hard-reset",
+      "path": "/node-ops/node-recovery/hard-reset",
+      "section": "node-ops",
+      "subsection": "node-recovery",
+      "hasApi": false,
+      "codeExamplesCount": 8
+    },
+    {
+      "title": "Validator Installation",
+      "url": "https://docs.monad.xyz/node-ops/validator-installation",
+      "path": "/node-ops/validator-installation",
+      "section": "node-ops",
+      "subsection": "validator-installation",
+      "hasApi": false,
+      "codeExamplesCount": 4
+    },
+    {
+      "title": "Official Links",
+      "url": "https://docs.monad.xyz/official-links",
+      "path": "/official-links",
+      "section": "official-links",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "JSON-RPC API",
+      "url": "https://docs.monad.xyz/reference/json-rpc/",
+      "path": "/reference/json-rpc/",
+      "section": "reference",
+      "subsection": "json-rpc",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "RPC Reference",
+      "url": "https://docs.monad.xyz/reference/",
+      "path": "/reference/",
+      "section": "reference",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "RPC Differences",
+      "url": "https://docs.monad.xyz/reference/rpc-differences",
+      "path": "/reference/rpc-differences",
+      "section": "reference",
+      "subsection": "rpc-differences",
+      "hasApi": false,
+      "codeExamplesCount": 1
+    },
+    {
+      "title": "RPC Error Codes",
+      "url": "https://docs.monad.xyz/reference/rpc-error-codes",
+      "path": "/reference/rpc-error-codes",
+      "section": "reference",
+      "subsection": "rpc-error-codes",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "RPC Limits",
+      "url": "https://docs.monad.xyz/reference/rpc-limits",
+      "path": "/reference/rpc-limits",
+      "section": "reference",
+      "subsection": "rpc-limits",
+      "hasApi": false,
+      "codeExamplesCount": 2
+    },
+    {
+      "title": "WebSocket Guide",
+      "url": "https://docs.monad.xyz/reference/websockets",
+      "path": "/reference/websockets",
+      "section": "reference",
+      "subsection": "websockets",
+      "hasApi": false,
+      "codeExamplesCount": 11
+    },
+    {
+      "title": "Farcaster Mini Apps",
+      "url": "https://docs.monad.xyz/templates/farcaster-miniapp/",
+      "path": "/templates/farcaster-miniapp/",
+      "section": "templates",
+      "subsection": "farcaster-miniapp",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "How to generate user specific images in the Farcaster Mini App",
+      "url": "https://docs.monad.xyz/templates/farcaster-miniapp/generating-custom-og-images",
+      "path": "/templates/farcaster-miniapp/generating-custom-og-images",
+      "section": "templates",
+      "subsection": "farcaster-miniapp",
+      "hasApi": false,
+      "codeExamplesCount": 4
+    },
+    {
+      "title": "How to add haptics to a Farcaster Mini App",
+      "url": "https://docs.monad.xyz/templates/farcaster-miniapp/haptics",
+      "path": "/templates/farcaster-miniapp/haptics",
+      "section": "templates",
+      "subsection": "farcaster-miniapp",
+      "hasApi": false,
+      "codeExamplesCount": 1
+    },
+    {
+      "title": "How to build a Farcaster Mini App",
+      "url": "https://docs.monad.xyz/templates/farcaster-miniapp/getting-started",
+      "path": "/templates/farcaster-miniapp/getting-started",
+      "section": "templates",
+      "subsection": "farcaster-miniapp",
+      "hasApi": false,
+      "codeExamplesCount": 14
+    },
+    {
+      "title": "How to publish a Farcaster Mini App",
+      "url": "https://docs.monad.xyz/templates/farcaster-miniapp/publishing-miniapp",
+      "path": "/templates/farcaster-miniapp/publishing-miniapp",
+      "section": "templates",
+      "subsection": "farcaster-miniapp",
+      "hasApi": false,
+      "codeExamplesCount": 2
+    },
+    {
+      "title": "How to send notifications to users of the Farcaster Mini App",
+      "url": "https://docs.monad.xyz/templates/farcaster-miniapp/sending-notifications",
+      "path": "/templates/farcaster-miniapp/sending-notifications",
+      "section": "templates",
+      "subsection": "farcaster-miniapp",
+      "hasApi": false,
+      "codeExamplesCount": 4
+    },
+    {
+      "title": "How to use the Next.js PWA Privy embedded wallet template",
+      "url": "https://docs.monad.xyz/templates/next-serwist-privy-embedded-wallet",
+      "path": "/templates/next-serwist-privy-embedded-wallet",
+      "section": "templates",
+      "subsection": "next-serwist-privy-embedded-wallet",
+      "hasApi": false,
+      "codeExamplesCount": 16
+    },
+    {
+      "title": "How to use the Next.js Serwist 0x Privy embedded wallet template",
+      "url": "https://docs.monad.xyz/templates/next-serwist-0x-privy-embedded-wallet",
+      "path": "/templates/next-serwist-0x-privy-embedded-wallet",
+      "section": "templates",
+      "subsection": "next-serwist-0x-privy-embedded-wallet",
+      "hasApi": false,
+      "codeExamplesCount": 23
+    },
+    {
+      "title": "How to use the Next.js Serwist Thirdweb embedded wallet template",
+      "url": "https://docs.monad.xyz/templates/next-serwist-thirdweb",
+      "path": "/templates/next-serwist-thirdweb",
+      "section": "templates",
+      "subsection": "next-serwist-thirdweb",
+      "hasApi": false,
+      "codeExamplesCount": 15
+    },
+    {
+      "title": "How to use the Next.js PWA sponsored transactions template",
+      "url": "https://docs.monad.xyz/templates/next-serwist-privy-smart-wallet",
+      "path": "/templates/next-serwist-privy-smart-wallet",
+      "section": "templates",
+      "subsection": "next-serwist-privy-smart-wallet",
+      "hasApi": false,
+      "codeExamplesCount": 17
+    },
+    {
+      "title": "How to use the React Native Privy embedded wallet template",
+      "url": "https://docs.monad.xyz/templates/react-native-privy-embedded-wallet",
+      "path": "/templates/react-native-privy-embedded-wallet",
+      "section": "templates",
+      "subsection": "react-native-privy-embedded-wallet",
+      "hasApi": false,
+      "codeExamplesCount": 18
+    },
+    {
+      "title": "How to use the React Native sponsored transactions template",
+      "url": "https://docs.monad.xyz/templates/react-native-privy-pimlico-sponsored-transactions",
+      "path": "/templates/react-native-privy-pimlico-sponsored-transactions",
+      "section": "templates",
+      "subsection": "react-native-privy-pimlico-sponsored-transactions",
+      "hasApi": false,
+      "codeExamplesCount": 19
+    },
+    {
+      "title": "How to use the React Native Thirdweb embedded wallet template",
+      "url": "https://docs.monad.xyz/templates/react-native-thirdweb-embedded-wallet",
+      "path": "/templates/react-native-thirdweb-embedded-wallet",
+      "section": "templates",
+      "subsection": "react-native-thirdweb-embedded-wallet",
+      "hasApi": false,
+      "codeExamplesCount": 12
+    },
+    {
+      "title": "Tooling and Infrastructure",
+      "url": "https://docs.monad.xyz/tooling-and-infra/",
+      "path": "/tooling-and-infra/",
+      "section": "tooling-and-infra",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Analytics",
+      "url": "https://docs.monad.xyz/tooling-and-infra/analytics",
+      "path": "/tooling-and-infra/analytics",
+      "section": "tooling-and-infra",
+      "subsection": "analytics",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Block Explorers",
+      "url": "https://docs.monad.xyz/tooling-and-infra/block-explorers",
+      "path": "/tooling-and-infra/block-explorers",
+      "section": "tooling-and-infra",
+      "subsection": "block-explorers",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Custody",
+      "url": "https://docs.monad.xyz/tooling-and-infra/custody",
+      "path": "/tooling-and-infra/custody",
+      "section": "tooling-and-infra",
+      "subsection": "custody",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Cross-Chain",
+      "url": "https://docs.monad.xyz/tooling-and-infra/cross-chain",
+      "path": "/tooling-and-infra/cross-chain",
+      "section": "tooling-and-infra",
+      "subsection": "cross-chain",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Debugging Onchain",
+      "url": "https://docs.monad.xyz/tooling-and-infra/debugging-onchain",
+      "path": "/tooling-and-infra/debugging-onchain",
+      "section": "tooling-and-infra",
+      "subsection": "debugging-onchain",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Indexers",
+      "url": "https://docs.monad.xyz/tooling-and-infra/indexers/",
+      "path": "/tooling-and-infra/indexers/",
+      "section": "tooling-and-infra",
+      "subsection": "indexers",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Common Data",
+      "url": "https://docs.monad.xyz/tooling-and-infra/indexers/common-data",
+      "path": "/tooling-and-infra/indexers/common-data",
+      "section": "tooling-and-infra",
+      "subsection": "indexers",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Indexing Frameworks",
+      "url": "https://docs.monad.xyz/tooling-and-infra/indexers/indexing-frameworks",
+      "path": "/tooling-and-infra/indexers/indexing-frameworks",
+      "section": "tooling-and-infra",
+      "subsection": "indexers",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Local Nodes",
+      "url": "https://docs.monad.xyz/tooling-and-infra/local-nodes",
+      "path": "/tooling-and-infra/local-nodes",
+      "section": "tooling-and-infra",
+      "subsection": "local-nodes",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Onramps",
+      "url": "https://docs.monad.xyz/tooling-and-infra/onramps",
+      "path": "/tooling-and-infra/onramps",
+      "section": "tooling-and-infra",
+      "subsection": "onramps",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "RPC Providers",
+      "url": "https://docs.monad.xyz/tooling-and-infra/rpc-providers",
+      "path": "/tooling-and-infra/rpc-providers",
+      "section": "tooling-and-infra",
+      "subsection": "rpc-providers",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Oracles",
+      "url": "https://docs.monad.xyz/tooling-and-infra/oracles",
+      "path": "/tooling-and-infra/oracles",
+      "section": "tooling-and-infra",
+      "subsection": "oracles",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Wallet Infrastructure",
+      "url": "https://docs.monad.xyz/tooling-and-infra/wallet-infra/",
+      "path": "/tooling-and-infra/wallet-infra/",
+      "section": "tooling-and-infra",
+      "subsection": "wallet-infra",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Toolkits",
+      "url": "https://docs.monad.xyz/tooling-and-infra/toolkits",
+      "path": "/tooling-and-infra/toolkits",
+      "section": "tooling-and-infra",
+      "subsection": "toolkits",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Account Abstraction Providers",
+      "url": "https://docs.monad.xyz/tooling-and-infra/wallet-infra/account-abstraction",
+      "path": "/tooling-and-infra/wallet-infra/account-abstraction",
+      "section": "tooling-and-infra",
+      "subsection": "wallet-infra",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Embedded Wallets",
+      "url": "https://docs.monad.xyz/tooling-and-infra/wallet-infra/embedded-wallets",
+      "path": "/tooling-and-infra/wallet-infra/embedded-wallets",
+      "section": "tooling-and-infra",
+      "subsection": "wallet-infra",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Smart Account Implementations",
+      "url": "https://docs.monad.xyz/tooling-and-infra/wallet-infra/smart-accounts",
+      "path": "/tooling-and-infra/wallet-infra/smart-accounts",
+      "section": "tooling-and-infra",
+      "subsection": "wallet-infra",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Wallets",
+      "url": "https://docs.monad.xyz/tooling-and-infra/wallets/",
+      "path": "/tooling-and-infra/wallets/",
+      "section": "tooling-and-infra",
+      "subsection": "wallets",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Multisig Wallets",
+      "url": "https://docs.monad.xyz/tooling-and-infra/wallets/multisig-wallets",
+      "path": "/tooling-and-infra/wallets/multisig-wallets",
+      "section": "tooling-and-infra",
+      "subsection": "wallets",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Hardware Wallets",
+      "url": "https://docs.monad.xyz/tooling-and-infra/wallets/hardware-wallets",
+      "path": "/tooling-and-infra/wallets/hardware-wallets",
+      "section": "tooling-and-infra",
+      "subsection": "wallets",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Software Wallets",
+      "url": "https://docs.monad.xyz/tooling-and-infra/wallets/software-wallets",
+      "path": "/tooling-and-infra/wallets/software-wallets",
+      "section": "tooling-and-infra",
+      "subsection": "wallets",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    },
+    {
+      "title": "Introduction",
+      "url": "https://docs.monad.xyz/",
+      "path": "/",
+      "section": "root",
+      "hasApi": false,
+      "codeExamplesCount": 0
+    }
+  ]
+}

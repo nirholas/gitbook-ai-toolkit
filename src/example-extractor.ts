@@ -2,6 +2,8 @@
 /**
  * Code Example Extractor for GitBook Documentation
  * 
+ * Built with ❤️ by nich (https://github.com/nirholas) 👉 nich on X (https://x.com/nichxbt)
+ * 
  * Extracts and organizes code examples from scraped GitBook documentation
  * Useful for quick reference and understanding API usage
  * 

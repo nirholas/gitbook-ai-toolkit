@@ -1,5 +1,7 @@
 # MCP Server Template for GitBook APIs
 
+<!-- Built with ❤️ by nich (https://github.com/nirholas) 👉 nich on X (https://x.com/nichxbt) -->
+
 Use this template to build an MCP server from scraped GitBook documentation.
 
 ---

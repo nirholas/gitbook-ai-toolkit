@@ -2,6 +2,8 @@
 /**
  * GitBook Documentation Scraper
  * 
+ * Built with ❤️ by nich (https://github.com/nirholas) 👉 nich on X (https://x.com/nichxbt)
+ * 
  * Scrapes complete documentation from any GitBook-based docs site
  * Handles GitBook's dynamic navigation and API-driven content
  * Generates markdown files optimized for AI agent consumption

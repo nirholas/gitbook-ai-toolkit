@@ -1,0 +1,35 @@
+# Network Information - Mainnet
+
+> Source: https://docs.monad.xyz/developer-essentials/network-information
+
+## Documentation
+
+On this page
+
+NameValueNetwork NameMonad MainnetChain ID143Currency SymbolMONRPC URLsee belowBlock Explorer (MonadVision)https://monadvision.comBlock Explorer (Monadscan)https://monadscan.comBlock Explorer (Socialscan)https://monad.socialscan.ioNetwork Visualizationhttps://gmonads.comCurrent version / revisionv0.12.2-rc / MONAD_EIGHT
+Other block explorers supported:
+
+Detailed traces: Phalcon Explorer and Tenderly
+UserOps: Jiffyscan
+
+Public RPC Endpoints​
+Public RPC endpoints are rate-limited but should be sufficient for basic usage. If you
+need a higher-limit RPC endpoint, please see RPC Providers.
+Websocket endpoints start with wss://. See Websocket Reference for
+further information.
+RPC URLProviderRate LimitsBatch Call LimitNoteshttps://rpc.monad.xyzwss://rpc.monad.xyzQuickNode25 rps100https://rpc1.monad.xyzwss://rpc1.monad.xyzAlchemy15 rps100debug_ and trace_ methods disabledhttps://rpc3.monad.xyzwss://rpc3.monad.xyzAnkr300 per 10s10debug_ methods disabledhttps://rpc-mainnet.monadinfra.comwss://rpc-mainnet.monadinfra.comMF20 rps1historical state lookups (e.g. eth_call) supported; see discussion
+See RPC Limits for additional detail on method-specific limits.
+Supported Infrastructure​
+See the Tooling and Infrastructure page for a list of providers
+supporting mainnet.
+Canonical Contracts​
+NameAddressWrapped MON0x3bd359C1119dA7Da1D913D1C4D2B7c461115433ACreate2Deployer0x13b0D85CcB8bf860b6b79AF3029fCA081AE9beF2CreateX0xba5Ed099633D3B313e4D5F7bdc1305d3c28ba5EdERC-2470 Singleton Factory0xce0042b868300000d44a59004da54a005ffdcf9fERC-4337 EntryPoint v0.60x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789ERC-4337 SenderCreator v0.60x7fc98430eAEdbb6070B35B39D798725049088348ERC-4337 EntryPoint v0.70x0000000071727De22E5E9d8BAf0edAc6f37da032ERC-4337 SenderCreator v0.70xEFC2c1444eBCC4Db75e7613d20C6a62fF67A167CFoundry Deterministic Deployer0x4e59b44847b379578588920ca78fbf26c0b4956cMulticall30xcA11bde05977b3631167028862bE2a173976CA11MultiSend0x998739BFdAAdde7C933B942a68053933098f9EDaMultiSendCallOnly0xA1dabEF33b3B82c7814B6D82A79e50F4AC44102BPermit20x000000000022d473030f116ddee9f6b43ac78ba3Safe0x69f4D1788e39c87893C980c06EdF4b7f686e2938SafeL20xfb1bffC9d739B8D520DaF37dF666da4C687191EASafeSingletonFactory0x914d7Fec6aaC8cd542e72Bca78B30650d45643d7SimpleAccount0x68641DE71cfEa5a5d0D29712449Ee254bb1400C2Simple7702Account0xe6Cae83BdE06E4c305530e199D7217f42808555BSub Zero VanityMarket0x000000000000b361194cfe6312EE3210d53C15AAZoltu Deterministic Deployment Proxy0x7A0D94F55792C434d74a40883C6ed8545E406D12
+Ecosystem contract addresses​
+See the protocols repo.
+Tokens​
+See the token-list repo.
+Here is a partial list:
+NameAddressNotesWMON0x3bd359C1119dA7Da1D913D1C4D2B7c461115433AAUSD0x00000000eFE302BEAA2b3e6e1b18d08D69a9012aUSDC0x754704Bc059F8C67012fEd69BC8A327a5aafb603CCTPUSDT00xe7cd86e13AC4309349F30B3435a9d337750fC82DOFTWBTC0x0555E30da8f98308EdB960aa94C0Db47230d2B9cOFTWETH0xEE8c0E9f1BFFb4Eb878d8f15f368A02a354812422/2 NTT BridgewstETH0x10Aeaf63194db8d453d4D85a06E5eFE1dd0b5417CCIPWSOL0xea17E5a9efEBf1477dB45082d67010E2245217f1WormholeXAUt00x01bFF41798a0BcF287b996046Ca68b395DbC1071OFT
+MON on other blockchains​
+Partial list of wrapped MON addresses on other blockchainsNameBlockchainAddressNotesWMONSolanaCrAr4RRJMBVwRsZtT62pEhfA9H5utymC2mVx8e7FreP2WMONEthereum0x6917037f8944201b2648198a89906edf863b95172/2 NTT
+

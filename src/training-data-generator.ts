@@ -2,6 +2,8 @@
 /**
  * Training Data Generator for GitBook Documentation
  * 
+ * Built with ❤️ by nich (https://github.com/nirholas) 👉 nich on X (https://x.com/nichxbt)
+ * 
  * Generates Q&A pairs and conversation data for LLM fine-tuning
  * Perfect for creating domain-specific chatbots and fine-tuning models
  * 

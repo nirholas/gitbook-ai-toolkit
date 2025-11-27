@@ -2,6 +2,8 @@
 /**
  * Chunk Generator for GitBook Documentation
  * 
+ * Built with ❤️ by nich (https://github.com/nirholas) 👉 nich on X (https://x.com/nichxbt)
+ * 
  * Generates semantic chunks optimized for RAG (Retrieval Augmented Generation)
  * Perfect for vector databases, embeddings, and semantic search
  * 
