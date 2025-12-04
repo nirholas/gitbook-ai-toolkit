@@ -70,6 +70,14 @@ web_modules/
 .env.*
 !.env.example
 
+# Scraped documentation outputs
+scraped-docs/
+output/
+*.zip
+os/
+test-output/
+test-zip/
+
 # parcel-bundler cache (https://parceljs.org/)
 .cache
 .parcel-cache

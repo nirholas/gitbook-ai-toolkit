@@ -40,6 +40,9 @@ interface ScraperConfig {
   userAgent: string;
   useBrowser: boolean;
   version?: string;
+  crawlDepth: number;
+  followLinks: boolean;
+  createZip: boolean;
 }
 
 interface DocPage {
@@ -107,6 +110,9 @@ class GitBookDocsScraper {
       userAgent: config.userAgent || 'GitBookDocsScraper/1.0 (AI Agent Documentation Tool)',
       useBrowser: config.useBrowser || false,
       version: config.version,
+      crawlDepth: config.crawlDepth ?? 3,
+      followLinks: config.followLinks ?? true,
+      createZip: config.createZip ?? false,
     };
   }
 
@@ -409,6 +415,11 @@ class GitBookDocsScraper {
     
     console.log(`📋 Found ${links.length} links from homepage`);
     this.queue.push(...links);
+    
+    // If followLinks is enabled, recursively crawl discovered pages
+    if (this.config.followLinks && this.config.crawlDepth > 0) {
+      await this.crawlRecursively(links, 1);
+    }
   }
 
   /**
@@ -426,15 +437,47 @@ class GitBookDocsScraper {
       const $ = cheerio.load(html);
       const links: string[] = [];
       
-      // GitBook uses specific navigation selectors
+      // Comprehensive GitBook navigation selectors
+      // Covers different GitBook versions and themes
       const selectors = [
+        // Sidebar selectors
         'nav a',
         '.navigation a',
         '[class*="sidebar"] a',
+        '[class*="Sidebar"] a',
         '[class*="nav"] a',
+        '[class*="Nav"] a',
         '[data-testid="navigation"] a',
+        '[data-testid="sidebar"] a',
         '.summary a',
         '.table-of-contents a',
+        '.toc a',
+        
+        // GitBook-specific classes
+        '.gitbook-navigation a',
+        '.gitbook-sidebar a',
+        '.page-toc a',
+        '[class*="PageToc"] a',
+        '[class*="TOC"] a',
+        
+        // Structural selectors
+        'aside a',
+        '[role="navigation"] a',
+        '[role="complementary"] a',
+        
+        // Menu and list selectors
+        '[class*="menu"] a',
+        '[class*="Menu"] a',
+        'ul.menu a',
+        'ul[class*="list"] a',
+        
+        // Content links (for deep crawling)
+        'main a',
+        'article a',
+        '.content a',
+        '[class*="content"] a',
+        '.markdown-section a',
+        '.page-inner a',
       ];
       
       for (const selector of selectors) {
@@ -442,9 +485,23 @@ class GitBookDocsScraper {
           const href = $(el).attr('href');
           if (href) {
             try {
-              const fullUrl = new URL(href, this.config.baseUrl).href;
+              // Handle relative URLs, absolute URLs, and hash links
+              let fullUrl: string;
+              
+              // Skip hash-only links
+              if (href.startsWith('#')) return;
+              
+              // Handle protocol-relative URLs
+              if (href.startsWith('//')) {
+                fullUrl = `https:${href}`;
+              } else {
+                fullUrl = new URL(href, this.config.baseUrl).href;
+              }
+              
               if (fullUrl.startsWith(this.config.baseUrl) && this.isDocumentationUrl(fullUrl)) {
-                links.push(fullUrl);
+                // Remove hash fragments for deduplication
+                const urlWithoutHash = fullUrl.split('#')[0];
+                links.push(urlWithoutHash);
               }
             } catch (e) {
               // Invalid URL, skip
@@ -453,10 +510,143 @@ class GitBookDocsScraper {
         });
       }
       
+      // Also try to extract links from JSON-LD structured data
+      const jsonLdLinks = this.extractLinksFromJsonLd($, html);
+      links.push(...jsonLdLinks);
+      
       return [...new Set(links)];
     } catch (error) {
       console.warn(`⚠️  Could not extract links from ${url}: ${error}`);
       return [];
+    }
+  }
+  
+  /**
+   * Extract links from JSON-LD structured data
+   */
+  private extractLinksFromJsonLd($: cheerio.CheerioAPI, html: string): string[] {
+    const links: string[] = [];
+    
+    try {
+      // Look for JSON-LD script tags
+      $('script[type="application/ld+json"]').each((_, script) => {
+        try {
+          const jsonLd = JSON.parse($(script).html() || '{}');
+          this.traverseJsonLdForUrls(jsonLd, links);
+        } catch (e) {
+          // Invalid JSON, skip
+        }
+      });
+      
+      // Look for embedded navigation data in script tags
+      const navDataMatch = html.match(/"pages"\s*:\s*\[([\s\S]*?)\]/);
+      if (navDataMatch) {
+        try {
+          const navData = JSON.parse(`[${navDataMatch[1]}]`);
+          this.traverseJsonLdForUrls(navData, links);
+        } catch (e) {
+          // Invalid JSON, skip
+        }
+      }
+    } catch (e) {
+      // Error extracting JSON-LD, skip
+    }
+    
+    return links.filter(link => this.isDocumentationUrl(link));
+  }
+  
+  /**
+   * Recursively traverse JSON-LD data to find URLs
+   */
+  private traverseJsonLdForUrls(obj: any, links: string[]): void {
+    if (!obj) return;
+    
+    if (typeof obj === 'string') {
+      try {
+        const fullUrl = new URL(obj, this.config.baseUrl).href;
+        if (fullUrl.startsWith(this.config.baseUrl)) {
+          links.push(fullUrl.split('#')[0]);
+        }
+      } catch (e) {
+        // Not a URL, skip
+      }
+      return;
+    }
+    
+    if (typeof obj !== 'object') return;
+    
+    // Check common URL properties
+    const urlProps = ['url', 'href', 'path', 'link', '@id', 'sameAs'];
+    for (const prop of urlProps) {
+      if (obj[prop]) {
+        try {
+          const fullUrl = new URL(obj[prop], this.config.baseUrl).href;
+          if (fullUrl.startsWith(this.config.baseUrl)) {
+            links.push(fullUrl.split('#')[0]);
+          }
+        } catch (e) {
+          // Invalid URL, skip
+        }
+      }
+    }
+    
+    // Recursively traverse arrays and objects
+    if (Array.isArray(obj)) {
+      obj.forEach(item => this.traverseJsonLdForUrls(item, links));
+    } else {
+      Object.values(obj).forEach(value => this.traverseJsonLdForUrls(value, links));
+    }
+  }
+  
+  /**
+   * Recursively crawl discovered pages to find additional links
+   */
+  private async crawlRecursively(urls: string[], depth: number): Promise<void> {
+    if (depth >= this.config.crawlDepth) {
+      console.log(`⚠️  Reached maximum crawl depth (${this.config.crawlDepth})`);
+      return;
+    }
+    
+    console.log(`🔍 Crawling depth ${depth}...`);
+    
+    const newUrls: string[] = [];
+    
+    // Process URLs in batches
+    for (let i = 0; i < urls.length; i += this.config.maxConcurrent) {
+      const batch = urls.slice(i, i + this.config.maxConcurrent);
+      
+      const batchResults = await Promise.all(
+        batch.map(async (url) => {
+          // Skip if already visited
+          if (this.visitedUrls.has(url)) return [];
+          
+          const links = await this.extractLinks(url);
+          return links.filter(link => !this.visitedUrls.has(link) && !this.queue.includes(link));
+        })
+      );
+      
+      for (const links of batchResults) {
+        newUrls.push(...links);
+      }
+      
+      // Rate limiting
+      if (i + this.config.maxConcurrent < urls.length) {
+        await new Promise(resolve => setTimeout(resolve, this.config.delayMs));
+      }
+    }
+    
+    const uniqueNewUrls = [...new Set(newUrls)];
+    
+    if (uniqueNewUrls.length > 0) {
+      console.log(`📋 Found ${uniqueNewUrls.length} new pages at depth ${depth}`);
+      this.queue.push(...uniqueNewUrls);
+      
+      // Continue crawling if not at max depth
+      if (depth + 1 < this.config.crawlDepth) {
+        await this.crawlRecursively(uniqueNewUrls, depth + 1);
+      }
+    } else {
+      console.log(`✓ No new pages found at depth ${depth}`);
     }
   }
 
@@ -836,6 +1026,11 @@ class GitBookDocsScraper {
     
     // Generate metadata
     await this.generateMetadata();
+    
+    // Create zip archive if requested
+    if (this.config.createZip) {
+      await this.createZipArchive();
+    }
   }
 
   /**
@@ -992,6 +1187,47 @@ class GitBookDocsScraper {
   }
 
   /**
+   * Create zip archive of the documentation
+   */
+  private async createZipArchive(): Promise<void> {
+    console.log('📦 Creating zip archive...');
+    
+    const { exec } = await import('child_process');
+    const { promisify } = await import('util');
+    const execAsync = promisify(exec);
+    
+    try {
+      const outputDirName = path.basename(this.config.outputDir);
+      const parentDir = path.dirname(this.config.outputDir);
+      const zipFileName = `${outputDirName}.zip`;
+      const zipFilePath = path.join(parentDir, zipFileName);
+      
+      // Remove existing zip if it exists
+      try {
+        await fs.unlink(zipFilePath);
+      } catch (e) {
+        // File doesn't exist, no problem
+      }
+      
+      // Create zip using system zip command
+      const { stdout, stderr } = await execAsync(
+        `cd "${parentDir}" && zip -r "${zipFileName}" "${outputDirName}"/`,
+        { maxBuffer: 1024 * 1024 * 100 } // 100MB buffer
+      );
+      
+      console.log(`✅ Zip archive created: ${zipFilePath}`);
+      
+      // Get file size for display
+      const stats = await fs.stat(zipFilePath);
+      const sizeMB = (stats.size / (1024 * 1024)).toFixed(2);
+      console.log(`📦 Archive size: ${sizeMB} MB`);
+    } catch (error) {
+      console.error(`❌ Failed to create zip archive: ${error}`);
+      console.log('💡 Tip: Make sure the "zip" command is installed on your system');
+    }
+  }
+
+  /**
    * Sanitize filename for file system
    */
   private sanitizeFilename(filename: string): string {
@@ -1025,6 +1261,10 @@ Options:
   --delay <ms>             Delay between requests (default: 1500)
   --use-browser            Use headless browser for JS-heavy sites
   --version <v>            Specific documentation version
+  --crawl-depth <n>        Maximum depth for recursive crawling (default: 3)
+  --no-follow-links        Disable recursive link following
+  --follow-links           Enable recursive link following (default: true)
+  --zip                    Create a .zip archive of the output (default: false)
 
 Examples:
   npm run scrape-docs -- https://docs.sentry.io
@@ -1052,6 +1292,15 @@ Examples:
     } else if (args[i] === '--version' && args[i + 1]) {
       config.version = args[i + 1];
       i++;
+    } else if (args[i] === '--crawl-depth' && args[i + 1]) {
+      config.crawlDepth = parseInt(args[i + 1]);
+      i++;
+    } else if (args[i] === '--no-follow-links') {
+      config.followLinks = false;
+    } else if (args[i] === '--follow-links') {
+      config.followLinks = true;
+    } else if (args[i] === '--zip') {
+      config.createZip = true;
     }
   }
   

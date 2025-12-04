@@ -17,11 +17,15 @@
 
 **This Tool Handles:**
 1. ✅ Multiple discovery methods (GitBook Content API, API manifest, summary.json, sitemap, crawling)
-2. ✅ GitBook-specific selectors (.markdown-section, .page-inner)
-3. ✅ Metadata extraction (space ID, page ID, last modified)
-4. ✅ Versioned documentation support
-5. ✅ MCP tool generation
-6. ✅ Code example extraction with filename support
+2. ✅ **Deep sidebar crawling** - Recursively discovers all pages from navigation
+3. ✅ GitBook-specific selectors (.markdown-section, .page-inner)
+4. ✅ Metadata extraction (space ID, page ID, last modified)
+5. ✅ Versioned documentation support
+6. ✅ MCP tool generation
+7. ✅ Code example extraction with filename support
+8. ✅ **Configurable crawl depth** - Control how deep to follow links
+9. ✅ **JSON-LD extraction** - Discovers pages from structured data
+10. ✅ **Automatic zip archiving** - Create compressed archives of scraped docs
 
 > **Note:** While GitBook offers PDF export (`/~gitbook/pdf?page=...`), this scraper extracts structured markdown, code examples, and metadata - far more useful for AI agents and programmatic access than PDFs.
 
@@ -57,6 +61,21 @@ npm run scrape -- https://docs.sentry.io \
   --concurrent 2 \
   --delay 2000
 
+# Deep crawling with recursive link following (default)
+npm run scrape -- https://docs.monad.xyz \
+  --output ./output/monad \
+  --crawl-depth 5
+
+# Disable recursive crawling (API discovery only)
+npm run scrape -- https://docs.stripe.com \
+  --output ./output/stripe \
+  --no-follow-links
+
+# Create a zip archive of the scraped documentation
+npm run scrape -- https://docs.example.com \
+  --output ./output/example \
+  --zip
+
 # Use headless browser for JavaScript-heavy sites
 npm run scrape -- https://docs.stripe.com \
   --output ./output/stripe \
@@ -66,7 +85,24 @@ npm run scrape -- https://docs.stripe.com \
 npm run scrape -- https://docs.api.com \
   --output ./output/api-v2 \
   --version v2
+
+# Complete deep crawl with all sidebar pages and zip
+npm run scrape -- https://docs.example.com \
+  --output ./output/example \
+  --crawl-depth 10 \
+  --follow-links \
+  --concurrent 3 \
+  --zip
 ```
+
+---
+
+## 📚 Documentation
+
+- **[Deep Crawling Guide](CRAWLING.md)** - Complete guide to sidebar crawling and recursive discovery
+- **[Output Formats](OUTPUT_FORMATS.md)** - Different output formats for various use cases
+- **[Zip Archive Guide](examples/zip-archive.md)** - How to create and use compressed archives
+- **[Examples](examples/)** - Real-world scraping examples (Sentry, Stripe, etc.)
 
 ---
 
@@ -88,6 +124,26 @@ output/sentry/
     ├── projects.md
     └── ...
 ```
+
+### Zip Archive Creation
+
+Use the `--zip` flag to automatically create a compressed archive:
+
+```bash
+npm run scrape -- https://docs.example.com --output ./docs --zip
+```
+
+**Output:**
+- Creates the documentation in `./docs/`
+- Automatically generates `docs.zip` in the same parent directory
+- Displays archive size after creation
+- Perfect for sharing or archiving documentation
+
+**Benefits:**
+- 📦 Easy distribution and sharing
+- 💾 Compressed storage (typically 60-80% size reduction)
+- 📤 Quick upload/download
+- 🔒 Single-file archiving for backup
 
 ### Metadata Format
 

@@ -7,15 +7,20 @@ Complete workflow for scraping Sentry's GitBook documentation and building an MC
 ## Step 1: Scrape Documentation
 
 ```bash
-npm run scrape -- https://docs.sentry.io --output ./output/sentry
+npm run scrape -- https://docs.sentry.io \
+  --output ./output/sentry \
+  --crawl-depth 5 \
+  --zip
 ```
 
 This will:
 - Discover pages via GitBook API manifest
+- Deep crawl sidebar navigation (5 levels)
 - Scrape 200+ documentation pages
 - Generate organized markdown files
 - Create metadata.json with GitBook IDs
 - Extract code examples
+- Create compressed sentry.zip archive
 
 **Output:**
 ```
@@ -241,7 +246,10 @@ async function createEvent(projectId: string, eventData: any) {
 npm run scrape -- https://docs.sentry.io \
   --output ./output/sentry \
   --concurrent 1 \
-  --delay 2500
+  --delay 2500 \
+  --crawl-depth 5 \
+  --follow-links \
+  --zip
 ```
 
 ### Version-Specific Scraping

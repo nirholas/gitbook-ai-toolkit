@@ -2,6 +2,8 @@
 
 **Different users, different needs.** This scraper generates multiple output formats optimized for various use cases.
 
+> **Note:** All outputs can be automatically archived with the `--zip` flag for easy sharing and distribution. See [Zip Archive Guide](examples/zip-archive.md) for details.
+
 ---
 
 ## 🎯 Use Case Matrix
@@ -16,6 +18,7 @@
 | **Data Scientists** | Structured data, analytics | `metadata.json` |
 | **Documentation Sites** | Static site generation | `docusaurus/` |
 | **LLM Fine-tuning** | Q&A pairs, conversations | `training-data.jsonl` |
+| **Archives/Sharing** | Compressed single file | `.zip` archive |
 
 ---
 
@@ -393,11 +396,13 @@ npm run generate-training-data -- ./output/sentry --pairs 1000
 | metadata.json | ~45 KB | ~78 KB | Analytics |
 | mcp-tools.json | ~120 KB | ~215 KB | MCP servers |
 | Individual files | ~2.8 MB | ~4.5 MB | Static sites |
+| **ZIP archive** | **~0.6 MB** | **~1.0 MB** | **Distribution** |
 | chunks.json | ~3.2 MB* | ~5.1 MB* | RAG (estimated) |
 | api-spec.json | ~85 KB* | ~145 KB* | API clients (estimated) |
 | training-data.jsonl | ~1.8 MB* | ~3.0 MB* | LLM training (estimated) |
 
 *Estimated based on content analysis
+**Actual compressed sizes: ~70-80% reduction**
 
 ---
 
@@ -408,6 +413,12 @@ npm run generate-training-data -- ./output/sentry --pairs 1000
 npm run scrape -- <url> --output ./docs
 npm run generate-mcp -- ./docs
 # Use mcp-tools.json + examples/
+```
+
+### Sharing Documentation
+```bash
+npm run scrape -- <url> --output ./docs --zip
+# Share the .zip file with teammates
 ```
 
 ### RAG/Semantic Search

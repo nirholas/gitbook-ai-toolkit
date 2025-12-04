@@ -7,15 +7,21 @@ Workflow for scraping Stripe's GitBook documentation to build a payments MCP ser
 ## Step 1: Scrape Stripe Docs
 
 ```bash
-npm run scrape -- https://docs.stripe.com/api --output ./output/stripe
+npm run scrape -- https://docs.stripe.com/api \
+  --output ./output/stripe \
+  --crawl-depth 5 \
+  --follow-links \
+  --zip
 ```
 
 **What happens:**
 - Discovers pages via GitBook manifest
+- Deep crawls sidebar navigation (5 levels)
 - Scrapes 300+ API reference pages
 - Extracts payment method examples
 - Captures webhook schemas
 - Organizes by resource type
+- Creates compressed stripe.zip archive
 
 **Output Structure:**
 ```

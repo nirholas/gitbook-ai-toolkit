@@ -1,8 +1,0 @@
-# Yul
-
-> Source: https://docs.monad.xyz/guides/evm-resources/other-languages/yul
-
-## Documentation
-
-Yul is a intermediate language for Solidity that can generally be thought of as inline assembly for the EVM. It is not quite pure assembly, providing control flow constructs and abstracting away the inner working of the stack while still exposing the raw memory backend to developers. Yul is targeted at developers needing exposure to the EVM's raw memory backend to build high performance gas optimized EVM code.
-
