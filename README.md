@@ -800,3 +800,4 @@ This tool exists to make documentation more accessible for AI agents and develop
 **Questions?** Open an issue or reach out!
 
 **Built with** ❤️ **by** [nich](https://github.com/nirholas) 👉 [nich on X](https://x.com/nichxbt) 
+
