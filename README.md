@@ -351,6 +351,9 @@ tools/gitbook-scraper/
 # Best-practice scrape (images downloaded, safe defaults)
 npm run scrape-best -- https://docs.your-gitbook.com --output ./output
 
+# Browser-based scraping (for JavaScript-heavy sites)
+npm run scrape-best -- https://docs.your-gitbook.com --output ./output --use-browser
+
 # Generate MCP tools from scraped docs
 npm run generate-mcp -- ./output
 
@@ -364,10 +367,10 @@ npm run generate-api-spec -- ./output --output ./output/api-spec.json
 
 Contributions welcome! Areas for improvement:
 
-1. **Puppeteer Integration** - Full browser-based scraping
-2. **Version Detection** - Auto-detect and scrape all versions
-3. **Authentication** - Support for private GitBook spaces
-4. **PDF Export** - Generate PDF from scraped docs
+1. **Version Detection** - Auto-detect and scrape all versions
+2. **Authentication** - Support for private GitBook spaces
+3. **PDF Export** - Generate PDF from scraped docs
+4. **Mintlify Support** - Dedicated Mintlify documentation scraper
 
 ---
 

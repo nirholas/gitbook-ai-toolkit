@@ -17,6 +17,7 @@ import * as fs from 'fs/promises';
 import * as path from 'path';
 import { createHash } from 'crypto';
 import { mkdir } from 'fs/promises';
+import type { Browser, Page } from 'puppeteer';
 
 interface PageContent {
   url: string;
@@ -47,6 +48,7 @@ type ScraperOptions = {
   incremental?: boolean;
   rewriteLinks?: boolean;
   excludeExternalImages?: boolean;
+  useBrowser?: boolean;
 };
 
 class ImprovedGitBookScraper {
@@ -69,6 +71,8 @@ class ImprovedGitBookScraper {
   private incremental: boolean;
   private rewriteLinks: boolean;
   private excludeExternalImages: boolean;
+  private useBrowser: boolean;
+  private browser: Browser | null = null;
   private urlToLocalPath = new Map<string, string>();
   private imageMap = new Map<string, string>();
   private imageDownloads: Promise<void>[] = [];
@@ -88,6 +92,7 @@ class ImprovedGitBookScraper {
     this.incremental = options.incremental || false;
     this.rewriteLinks = options.rewriteLinks !== false;
     this.excludeExternalImages = options.excludeExternalImages || false;
+    this.useBrowser = options.useBrowser || false;
 
     const defaultSelectors = [
       'nav',
@@ -126,19 +131,37 @@ class ImprovedGitBookScraper {
   async scrape(): Promise<void> {
     console.log(`🚀 Starting improved GitBook scraper for: ${this.baseUrl}`);
     
-    // Discover pages
-    await this.discoverPages();
+    if (this.useBrowser) {
+      try {
+        const puppeteer = await import('puppeteer');
+        this.browser = await puppeteer.launch({ headless: true });
+        console.log('🌐 Puppeteer browser launched');
+      } catch (err) {
+        console.warn('⚠️  Puppeteer not available, falling back to fetch:', err);
+        this.useBrowser = false;
+      }
+    }
     
-    console.log(`📄 Found ${this.queue.length} pages to scrape`);
-    
-    // Scrape pages
-    await this.scrapePages();
-    
-    // Generate output
-    await this.generateOutput();
-    
-    console.log(`✅ Complete! Scraped ${this.pages.length} pages`);
-    console.log(`📁 Output: ${this.outputDir}`);
+    try {
+      // Discover pages
+      await this.discoverPages();
+      
+      console.log(`📄 Found ${this.queue.length} pages to scrape`);
+      
+      // Scrape pages
+      await this.scrapePages();
+      
+      // Generate output
+      await this.generateOutput();
+      
+      console.log(`✅ Complete! Scraped ${this.pages.length} pages`);
+      console.log(`📁 Output: ${this.outputDir}`);
+    } finally {
+      if (this.browser) {
+        await this.browser.close();
+        console.log('🌐 Puppeteer browser closed');
+      }
+    }
   }
 
   /**
@@ -159,6 +182,46 @@ class ImprovedGitBookScraper {
       
       if (this.queue.length > 0) {
         await this.delay(this.delayMs);
+      }
+    }
+
+    // Fallback 1: Try sitemap.xml if minimal pages discovered
+    if (this.visited.size <= 1) {
+      console.log('📋 Attempting sitemap.xml discovery...');
+      const sitemapUrls = await this.parseSitemap();
+      if (sitemapUrls.length > 0) {
+        console.log(`📄 Found ${sitemapUrls.length} pages via sitemap.xml`);
+        for (const url of sitemapUrls) {
+          if (!this.visited.has(url)) {
+            this.queue.push({ url, depth: 0 });
+          }
+        }
+      }
+    }
+
+    // Fallback 2: Try robots.txt if still minimal pages
+    if (this.visited.size <= 1) {
+      console.log('📋 Attempting robots.txt discovery...');
+      const robotsUrls = await this.parseRobotsTxt();
+      if (robotsUrls.length > 0) {
+        console.log(`📄 Found ${robotsUrls.length} pages via robots.txt`);
+        for (const url of robotsUrls) {
+          if (!this.visited.has(url)) {
+            this.queue.push({ url, depth: 0 });
+          }
+        }
+      }
+    }
+
+    // Process fallback queue
+    if (this.queue.length > 0) {
+      console.log(`📥 Scraping fallback queue (${this.queue.length} pages)...`);
+      while (this.queue.length > 0) {
+        const batch = this.queue.splice(0, this.maxConcurrent);
+        await Promise.all(batch.map(queueItem => this.scrapePage(queueItem.url)));
+        if (this.queue.length > 0) {
+          await this.delay(this.delayMs);
+        }
       }
     }
   }
@@ -238,8 +301,35 @@ class ImprovedGitBookScraper {
    */
   private async scrapePage(url: string): Promise<void> {
     try {
-      const response = await this.fetchWithRetry(url);
-      const html = await response.text();
+      let html: string;
+      let responseHeaders: Headers | null = null;
+
+      // Use browser rendering if enabled and browser is available
+      if (this.useBrowser && this.browser) {
+        try {
+          const page = await this.browser.newPage();
+          try {
+            // Set a reasonable timeout for navigation
+            await page.goto(url, { waitUntil: 'networkidle2', timeout: 30000 });
+            html = await page.content();
+            console.log(`✅ Browser rendered: ${url}`);
+          } finally {
+            await page.close();
+          }
+        } catch (browserError) {
+          // Fallback to fetch if browser rendering fails
+          console.warn(`⚠️  Browser rendering failed for ${url}, falling back to fetch:`, browserError);
+          const response = await this.fetchWithRetry(url);
+          html = await response.text();
+          responseHeaders = response.headers;
+        }
+      } else {
+        // Use fetch for faster scraping when browser not available
+        const response = await this.fetchWithRetry(url);
+        html = await response.text();
+        responseHeaders = response.headers;
+      }
+
       const $ = cheerio.load(html);
       
       // Extract title
@@ -276,7 +366,7 @@ class ImprovedGitBookScraper {
       const meta = {
         description: $('meta[name="description"]').attr('content') || $('meta[property="og:description"]').attr('content'),
         keywords: ($('meta[name="keywords"]').attr('content') || '').split(',').map(s => s.trim()).filter(Boolean),
-        lastModified: response.headers.get('last-modified')
+        lastModified: responseHeaders?.get('last-modified')
       };
       
       if (markdown.trim().length > 0) {
@@ -819,6 +909,65 @@ class ImprovedGitBookScraper {
   }
 
   /**
+   * Parse sitemap.xml for page URLs
+   */
+  private async parseSitemap(): Promise<string[]> {
+    try {
+      const sitemapUrl = new URL('/sitemap.xml', this.baseUrl).href;
+      const response = await this.fetchWithRetry(sitemapUrl);
+      const xml = await response.text();
+      const urls: string[] = [];
+
+      const locMatches = xml.matchAll(/<loc>(.*?)<\/loc>/g);
+      for (const match of locMatches) {
+        const url = match[1].trim();
+        if (this.isValidDocUrl(url)) {
+          urls.push(url);
+        }
+      }
+
+      return urls;
+    } catch (error) {
+      return [];
+    }
+  }
+
+  /**
+   * Parse robots.txt for Sitemap reference
+   */
+  private async parseRobotsTxt(): Promise<string[]> {
+    try {
+      const robotsUrl = new URL('/robots.txt', this.baseUrl).href;
+      const response = await this.fetchWithRetry(robotsUrl);
+      const txt = await response.text();
+      const urls: string[] = [];
+
+      // Look for Sitemap: directives
+      const sitemapMatches = txt.matchAll(/Sitemap:\s*(.+)/gi);
+      for (const match of sitemapMatches) {
+        const sitemapUrl = match[1].trim();
+        try {
+          const sitemapResponse = await this.fetchWithRetry(sitemapUrl);
+          const xml = await sitemapResponse.text();
+          const locMatches = xml.matchAll(/<loc>(.*?)<\/loc>/g);
+          for (const locMatch of locMatches) {
+            const url = locMatch[1].trim();
+            if (this.isValidDocUrl(url)) {
+              urls.push(url);
+            }
+          }
+        } catch (e) {
+          // Skip invalid sitemap URL
+        }
+      }
+
+      return urls;
+    } catch (error) {
+      return [];
+    }
+  }
+
+  /**
    * Delay helper
    */
   private delay(ms: number): Promise<void> {
@@ -966,6 +1115,12 @@ Examples:
         break;
       case '--no-rewrite-links':
         options.rewriteLinks = false;
+        break;
+      case '--use-browser':
+        options.useBrowser = true;
+        break;
+      case '--no-browser':
+        options.useBrowser = false;
         break;
       case '--config':
         i++; // already handled
