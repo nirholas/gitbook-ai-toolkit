@@ -195,11 +195,12 @@ class GitBookDocsScraper {
    */
   private async parseGitBookContentApi(): Promise<string[]> {
     try {
-      // Try GitBook's v1 API endpoints
+      // Try GitBook's v5 API endpoints (more reliable for modern GitBook)
       const apiEndpoints = [
         '/~gitbook/api/v1/spaces/pages',
         '/_gitbook/api/v1/spaces/pages',
         '/api/v1/spaces/pages',
+        '/~gitbook/v1/spaces/content',  // Alternative endpoint
       ];
       
       for (const endpoint of apiEndpoints) {
@@ -215,27 +216,12 @@ class GitBookDocsScraper {
           if (!response.ok) continue;
           
           const data = await response.json();
-          const urls: string[] = [];
+          const urls = this.extractUrlsRecursively(data, this.config.baseUrl);
           
-          // Extract page URLs from API response
-          if (data.pages && Array.isArray(data.pages)) {
-            for (const page of data.pages) {
-              if (page.path || page.slug) {
-                const pagePath = page.path || page.slug;
-                const fullUrl = new URL(pagePath, this.config.baseUrl).href;
-                if (this.isDocumentationUrl(fullUrl)) {
-                  urls.push(fullUrl);
-                }
-              }
-            }
+          if (urls.length > 0) {
+            console.log(`📋 Found ${urls.length} pages via Content API`);
+            return urls;
           }
-          
-          // Also check for nested structure
-          if (data.space && data.space.pages) {
-            urls.push(...this.extractUrlsFromManifest(data.space));
-          }
-          
-          if (urls.length > 0) return urls;
         } catch (e) {
           continue;
         }
@@ -245,6 +231,41 @@ class GitBookDocsScraper {
     } catch (error) {
       return [];
     }
+  }
+
+  /**
+   * Recursively extract URLs from GitBook API response
+   */
+  private extractUrlsRecursively(obj: any, baseUrl: string, urls: Set<string> = new Set()): string[] {
+    if (!obj || typeof obj !== 'object') return Array.from(urls);
+    
+    // Check for path/url/slug properties
+    if ('path' in obj || 'url' in obj || 'slug' in obj) {
+      const pagePath = obj.path || obj.url || obj.slug;
+      if (typeof pagePath === 'string') {
+        try {
+          const fullUrl = new URL(pagePath, baseUrl).href;
+          if (this.isDocumentationUrl(fullUrl)) {
+            urls.add(fullUrl);
+          }
+        } catch (e) {
+          // Invalid URL
+        }
+      }
+    }
+    
+    // Recursively process arrays and nested objects
+    if (Array.isArray(obj)) {
+      for (const item of obj) {
+        this.extractUrlsRecursively(item, baseUrl, urls);
+      }
+    } else {
+      for (const value of Object.values(obj)) {
+        this.extractUrlsRecursively(value, baseUrl, urls);
+      }
+    }
+    
+    return Array.from(urls);
   }
 
   /**
@@ -481,7 +502,7 @@ class GitBookDocsScraper {
       ];
       
       for (const selector of selectors) {
-        $(selector).each((_, el) => {
+        $(selector).each((_: number, el: any) => {
           const href = $(el).attr('href');
           if (href) {
             try {
@@ -529,7 +550,7 @@ class GitBookDocsScraper {
     
     try {
       // Look for JSON-LD script tags
-      $('script[type="application/ld+json"]').each((_, script) => {
+      $('script[type="application/ld+json"]').each((_: number, script: any) => {
         try {
           const jsonLd = JSON.parse($(script).html() || '{}');
           this.traverseJsonLdForUrls(jsonLd, links);
@@ -790,7 +811,7 @@ class GitBookDocsScraper {
   private extractCodeExamples($content: cheerio.Cheerio<any>): CodeExample[] {
     const examples: CodeExample[] = [];
     
-    $content.find('pre code, .highlight code, [class*="code"] code').each((_, el) => {
+    $content.find('pre code, .highlight code, [class*="code"] code').each((_: number, el: any) => {
       const $el = $content.find(el);
       const code = $el.text().trim();
       
@@ -839,14 +860,14 @@ class GitBookDocsScraper {
     
     // Extract parameters from tables or lists
     const parameters: ApiEndpoint['parameters'] = [];
-    $content.find('table').each((_, table) => {
+    $content.find('table').each((_: number, table: any) => {
       const $table = $content.find(table);
-      const headers = $table.find('th').map((_, th) => $content.find(th).text().toLowerCase()).get();
+      const headers = $table.find('th').map((_: number, th: any) => $content.find(th).text().toLowerCase()).get();
       
       if (headers.includes('parameter') || headers.includes('name')) {
-        $table.find('tbody tr').each((_, tr) => {
+        $table.find('tbody tr').each((_: number, tr: any) => {
           const $tr = $content.find(tr);
-          const cells = $tr.find('td').map((_, td) => $content.find(td).text().trim()).get();
+          const cells = $tr.find('td').map((_: number, td: any) => $content.find(td).text().trim()).get();
           
           if (cells.length >= 2) {
             parameters.push({
@@ -874,36 +895,82 @@ class GitBookDocsScraper {
   private htmlToMarkdown($content: cheerio.Cheerio<any>): string {
     let markdown = '';
     
-    $content.children().each((_, el) => {
+    $content.children().each((_: number, el: any) => {
       const $el = $content.find(el);
       const tagName = el.tagName?.toLowerCase();
       
       switch (tagName) {
         case 'h1':
-          markdown += `# ${$el.text().trim()}\n\n`;
+          const h1Text = $el.text().trim();
+          if (h1Text) markdown += `# ${h1Text}\n\n`;
           break;
         case 'h2':
-          markdown += `## ${$el.text().trim()}\n\n`;
+          const h2Text = $el.text().trim();
+          if (h2Text) markdown += `## ${h2Text}\n\n`;
           break;
         case 'h3':
-          markdown += `### ${$el.text().trim()}\n\n`;
+          const h3Text = $el.text().trim();
+          if (h3Text) markdown += `### ${h3Text}\n\n`;
           break;
         case 'h4':
-          markdown += `#### ${$el.text().trim()}\n\n`;
+          const h4Text = $el.text().trim();
+          if (h4Text) markdown += `#### ${h4Text}\n\n`;
           break;
         case 'h5':
-          markdown += `##### ${$el.text().trim()}\n\n`;
+          const h5Text = $el.text().trim();
+          if (h5Text) markdown += `##### ${h5Text}\n\n`;
           break;
         case 'h6':
-          markdown += `###### ${$el.text().trim()}\n\n`;
+          const h6Text = $el.text().trim();
+          if (h6Text) markdown += `###### ${h6Text}\n\n`;
           break;
         case 'p':
-          markdown += `${$el.text().trim()}\n\n`;
+          const pText = $el.text().trim();
+          if (pText) {
+            // Handle links within paragraphs
+            let processed = '';
+            $el.contents().each((_: number, node: any) => {
+              if (node.type === 'text') {
+                processed += node.data;
+              } else if (node.name === 'a') {
+                const $link = $el.find(node).first();
+                const linkText = $link.text().trim();
+                const href = $link.attr('href');
+                if (linkText && href) {
+                  processed += `[${linkText}](${href})`;
+                } else {
+                  processed += linkText;
+                }
+              } else if (node.name === 'strong' || node.name === 'b') {
+                const $strong = $el.find(node).first();
+                processed += `**${$strong.text().trim()}**`;
+              } else if (node.name === 'em' || node.name === 'i') {
+                const $em = $el.find(node).first();
+                processed += `*${$em.text().trim()}*`;
+              } else if (node.name === 'code') {
+                const $code = $el.find(node).first();
+                processed += `\`${$code.text().trim()}\``;
+              } else {
+                processed += $el.find(node).first().text();
+              }
+            });
+            markdown += `${processed}\n\n`;
+          }
           break;
         case 'pre':
-          const code = $el.find('code').text().trim();
-          const lang = $el.find('code').attr('class')?.match(/lang(?:uage)?-(\w+)/)?.[1] || 'text';
-          markdown += `\`\`\`${lang}\n${code}\n\`\`\`\n\n`;
+          const code = $el.find('code').text().trim() || $el.text().trim();
+          const lang = $el.find('code').attr('class')?.match(/lang(?:uage)?-(\w+)/)?.[1] || 
+                      $el.attr('class')?.match(/lang(?:uage)?-(\w+)/)?.[1] || 'text';
+          if (code) {
+            markdown += `\`\`\`${lang}\n${code}\n\`\`\`\n\n`;
+          }
+          break;
+        case 'code':
+          // Inline code without pre
+          const codeText = $el.text().trim();
+          if (codeText && !codeText.includes('\n')) {
+            markdown += `\`${codeText}\` `;
+          }
           break;
         case 'ul':
         case 'ol':
@@ -913,15 +980,25 @@ class GitBookDocsScraper {
           markdown += this.convertTable($el);
           break;
         case 'blockquote':
-          const lines = $el.text().trim().split('\n');
-          markdown += lines.map(line => `> ${line}`).join('\n') + '\n\n';
+          const quoteText = $el.text().trim();
+          if (quoteText) {
+            const lines = quoteText.split('\n');
+            markdown += lines.map((line: string) => `> ${line.trim()}`).join('\n') + '\n\n';
+          }
           break;
         case 'hr':
           markdown += '---\n\n';
           break;
+        case 'img':
+          const imgSrc = $el.attr('src');
+          const imgAlt = $el.attr('alt') || 'image';
+          if (imgSrc) {
+            markdown += `![${imgAlt}](${imgSrc})\n\n`;
+          }
+          break;
         default:
           const text = $el.text().trim();
-          if (text) {
+          if (text && text.length > 0) {
             markdown += `${text}\n\n`;
           }
       }
@@ -937,7 +1014,7 @@ class GitBookDocsScraper {
     let markdown = '';
     let index = 1;
     
-    $list.children('li').each((_, li) => {
+    $list.children('li').each((_: number, li: any) => {
       const $li = $list.find(li);
       const prefix = ordered ? `${index}. ` : '- ';
       const text = $li.clone().children('ul, ol').remove().end().text().trim();
@@ -947,7 +1024,7 @@ class GitBookDocsScraper {
       const $nested = $li.children('ul, ol');
       if ($nested.length > 0) {
         const nestedMarkdown = this.convertList($nested, $nested.is('ol'));
-        markdown += nestedMarkdown.split('\n').map(line => `  ${line}`).join('\n') + '\n';
+        markdown += nestedMarkdown.split('\n').map((line: string) => `  ${line}`).join('\n') + '\n';
       }
       
       if (ordered) index++;
@@ -964,12 +1041,12 @@ class GitBookDocsScraper {
     
     // Headers
     const headers: string[] = [];
-    $table.find('thead th, tr:first-child th').each((_, th) => {
+    $table.find('thead th, tr:first-child th').each((_: number, th: any) => {
       headers.push($table.find(th).text().trim());
     });
     
     if (headers.length === 0) {
-      $table.find('tr:first-child td').each((_, td) => {
+      $table.find('tr:first-child td').each((_: number, td: any) => {
         headers.push($table.find(td).text().trim());
       });
     }
@@ -980,11 +1057,11 @@ class GitBookDocsScraper {
     }
     
     // Rows
-    $table.find('tbody tr, tr').each((i, tr) => {
+    $table.find('tbody tr, tr').each((i: number, tr: any) => {
       if (i === 0 && !$table.find('thead').length) return;
       
       const cells: string[] = [];
-      $table.find(tr).find('td').each((_, td) => {
+      $table.find(tr).find('td').each((_: number, td: any) => {
         cells.push($table.find(td).text().trim());
       });
       
@@ -1192,10 +1269,6 @@ class GitBookDocsScraper {
   private async createZipArchive(): Promise<void> {
     console.log('📦 Creating zip archive...');
     
-    const { exec } = await import('child_process');
-    const { promisify } = await import('util');
-    const execAsync = promisify(exec);
-    
     try {
       const outputDirName = path.basename(this.config.outputDir);
       const parentDir = path.dirname(this.config.outputDir);
@@ -1210,10 +1283,20 @@ class GitBookDocsScraper {
       }
       
       // Create zip using system zip command
-      const { stdout, stderr } = await execAsync(
-        `cd "${parentDir}" && zip -r "${zipFileName}" "${outputDirName}"/`,
-        { maxBuffer: 1024 * 1024 * 100 } // 100MB buffer
-      );
+      // Using dynamic import to load child_process at runtime
+      // @ts-ignore - child_process is available in Node.js
+      const { execSync } = await import('child_process');
+      
+      try {
+        execSync(
+          `cd "${parentDir}" && zip -r "${zipFileName}" "${outputDirName}"/`,
+          { stdio: 'pipe', maxBuffer: 100 * 1024 * 1024 }
+        );
+      } catch (e) {
+        console.error(`❌ Failed to create zip: ${e}`);
+        console.log('💡 Tip: Make sure the "zip" command is installed on your system');
+        return;
+      }
       
       console.log(`✅ Zip archive created: ${zipFilePath}`);
       
@@ -1223,7 +1306,6 @@ class GitBookDocsScraper {
       console.log(`📦 Archive size: ${sizeMB} MB`);
     } catch (error) {
       console.error(`❌ Failed to create zip archive: ${error}`);
-      console.log('💡 Tip: Make sure the "zip" command is installed on your system');
     }
   }
 
@@ -1243,7 +1325,8 @@ class GitBookDocsScraper {
  * CLI Interface
  */
 async function main() {
-  const args = process.argv.slice(2);
+  // @ts-ignore - process is available in Node.js context
+  const args = (globalThis as any).process?.argv?.slice(2) || [];
   
   if (args.length === 0 || args.includes('--help')) {
     console.log(`
@@ -1271,7 +1354,8 @@ Examples:
   npm run scrape-docs -- https://docs.stripe.com --output ./stripe-docs
   npm run scrape-docs -- https://docs.gitcoin.co --use-browser
     `);
-    process.exit(0);
+    // @ts-ignore
+    (globalThis as any).process?.exit(0);
   }
   
   const baseUrl = args[0];
