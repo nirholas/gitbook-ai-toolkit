@@ -69,24 +69,33 @@ class McpToolGenerator {
     const metadataPath = path.join(this.docsPath, 'metadata.json');
     const metadata = JSON.parse(await fs.readFile(metadataPath, 'utf-8'));
 
+    // Support both legacy metadata.pages and new metadata.pageList
+    const pages = (metadata.pageList || metadata.pages || []) as Array<{
+      title: string;
+      url: string;
+      section: string;
+      meta?: any;
+    }>;
+
     const tools: McpTool[] = [];
 
-    // Process each page that has an API endpoint
-    for (const page of metadata.pages) {
-      if (page.hasApi) {
-        const pagePath = path.join(this.docsPath, page.section, `${this.slugify(page.title)}.md`);
+    for (const page of pages) {
+      const pagePath = path.join(this.docsPath, page.section, `${this.sanitizeFilename(page.title)}.md`);
+
+      try {
+        const content = await fs.readFile(pagePath, 'utf-8');
+
+        // Detect API signature heuristically
+        if (!this.looksLikeApiDoc(content)) continue;
+
+        const tool = this.parseApiToMcpTool(content, page);
         
-        try {
-          const content = await fs.readFile(pagePath, 'utf-8');
-          const tool = this.parseApiToMcpTool(content, page);
-          
-          if (tool) {
-            tools.push(tool);
-            console.log(`✓ ${tool.name}`);
-          }
-        } catch (error) {
-          console.warn(`⚠️  Could not process ${page.title}:`, error);
+        if (tool) {
+          tools.push(tool);
+          console.log(`✓ ${tool.name}`);
         }
+      } catch (error) {
+        console.warn(`⚠️  Could not process ${page.title}:`, error);
       }
     }
 
@@ -234,6 +243,19 @@ export const mcpTools: Tool[] = [
     return `${prefix}_${suffix}`;
   }
 
+  private sanitizeFilename(name: string): string {
+    return name
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '')
+      .substring(0, 200);
+  }
+
+  private looksLikeApiDoc(markdown: string): boolean {
+    return /\*\*Method:\*\*\s*`?(GET|POST|PUT|DELETE|PATCH|HEAD|OPTIONS)`?/i.test(markdown) &&
+           /\*\*Endpoint:\*\*\s*`[^`]+`/i.test(markdown);
+  }
+
   /**
    * Map API type to JSON schema type
    */
@@ -314,15 +336,6 @@ export const mcpTools: Tool[] = [
     return examples;
   }
 
-  /**
-   * Convert title to slug
-   */
-  private slugify(text: string): string {
-    return text
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-|-$/g, '');
-  }
 }
 
 /**

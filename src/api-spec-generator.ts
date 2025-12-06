@@ -79,21 +79,28 @@ class ApiSpecGenerator {
     // Read metadata
     const metadataPath = path.join(this.docsPath, 'metadata.json');
     const metadata = JSON.parse(await fs.readFile(metadataPath, 'utf-8'));
+    const baseUrl = metadata.baseUrl || metadata.url;
+    const pages = (metadata.pageList || metadata.pages || []) as Array<{
+      title: string;
+      url: string;
+      section: string;
+      meta?: any;
+    }>;
 
     const spec = {
       openapi: '3.0.0',
       info: {
-        title: `${new URL(metadata.baseUrl).hostname} API`,
-        description: `Auto-generated from ${metadata.baseUrl}`,
+        title: `${new URL(baseUrl).hostname} API`,
+        description: `Auto-generated from ${baseUrl}`,
         version: '1.0.0',
         contact: {
           name: 'API Documentation',
-          url: metadata.baseUrl,
+          url: baseUrl,
         },
       },
       servers: [
         {
-          url: metadata.baseUrl,
+          url: baseUrl,
           description: 'Production server',
         },
       ],
@@ -120,26 +127,30 @@ class ApiSpecGenerator {
     const endpoints: ApiEndpoint[] = [];
     const tags = new Set<string>();
 
-    for (const page of metadata.pages) {
-      if (page.hasApi) {
-        const pagePath = path.join(
-          this.docsPath,
-          page.section,
-          `${this.slugify(page.title)}.md`
-        );
+    for (const page of pages) {
+      const section = page.section || 'root';
+      const pagePath = path.join(
+        this.docsPath,
+        section,
+        `${this.sanitizeFilename(page.title)}.md`
+      );
 
-        try {
-          const content = await fs.readFile(pagePath, 'utf-8');
-          const endpoint = this.parseEndpoint(content, page);
+      try {
+        const content = await fs.readFile(pagePath, 'utf-8');
 
-          if (endpoint) {
-            endpoints.push(endpoint);
-            endpoint.tags.forEach((tag) => tags.add(tag));
-            console.log(`✓ ${endpoint.method} ${endpoint.path}`);
-          }
-        } catch (error) {
-          console.warn(`⚠️  Could not process ${page.title}`);
+        if (!this.looksLikeApiDoc(content)) {
+          continue;
         }
+
+        const endpoint = this.parseEndpoint(content, { ...page, section });
+
+        if (endpoint) {
+          endpoints.push(endpoint);
+          endpoint.tags.forEach((tag) => tags.add(tag));
+          console.log(`✓ ${endpoint.method} ${endpoint.path}`);
+        }
+      } catch (error) {
+        console.warn(`⚠️  Could not process ${page.title}`);
       }
     }
 
@@ -331,6 +342,19 @@ class ApiSpecGenerator {
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/^-|-$/g, '');
+  }
+
+  private sanitizeFilename(name: string): string {
+    return name
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '')
+      .substring(0, 200);
+  }
+
+  private looksLikeApiDoc(markdown: string): boolean {
+    return /\*\*Method:\*\*\s*`?(GET|POST|PUT|DELETE|PATCH|HEAD|OPTIONS)`?/i.test(markdown) &&
+           /\*\*Endpoint:\*\*\s*`[^`]+`/i.test(markdown);
   }
 }
 

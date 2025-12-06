@@ -17,6 +17,7 @@
     "generate-chunks": "tsx src/chunk-generator.ts",
     "generate-training-data": "tsx src/training-data-generator.ts",
     "extract-examples": "tsx src/example-extractor.ts",
+    "scrape-best": "tsx src/scraper-improved.ts --depth 8 --delay 1500 --concurrent 2 --section-depth 2 --download-images --exclude-external-images --retry 3 --retry-delay 1500 --incremental",
     "build": "tsup src/scraper.ts src/mcp-generator.ts src/example-extractor.ts src/api-spec-generator.ts src/chunk-generator.ts src/training-data-generator.ts --format esm,cjs --dts",
     "dev": "tsx watch src/scraper.ts",
     "test": "tsx src/scraper.ts https://docs.sentry.io --output ./test-output",

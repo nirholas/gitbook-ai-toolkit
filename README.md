@@ -345,14 +345,17 @@ tools/gitbook-scraper/
 └── README.md
 ```
 
-### Running Tests
+### Common Commands
 
 ```bash
-# Test with Sentry docs
-npm test
+# Best-practice scrape (images downloaded, safe defaults)
+npm run scrape-best -- https://docs.your-gitbook.com --output ./output
 
-# Custom test
-npm run scrape -- https://docs.your-gitbook.com --output ./test-output
+# Generate MCP tools from scraped docs
+npm run generate-mcp -- ./output
+
+# Generate OpenAPI spec from scraped docs
+npm run generate-api-spec -- ./output --output ./output/api-spec.json
 ```
 
 ---
@@ -364,8 +367,7 @@ Contributions welcome! Areas for improvement:
 1. **Puppeteer Integration** - Full browser-based scraping
 2. **Version Detection** - Auto-detect and scrape all versions
 3. **Authentication** - Support for private GitBook spaces
-4. **Incremental Updates** - Only scrape changed pages
-5. **PDF Export** - Generate PDF from scraped docs
+4. **PDF Export** - Generate PDF from scraped docs
 
 ---
 
@@ -416,10 +418,10 @@ npm run scrape -- https://docs.large-site.com \
 | User Type | Primary Need | Best Output Format |
 |-----------|-------------|-------------------|
 | **AI Agents** | Full context, single file | `COMPLETE.md` |
-| **MCP Servers** | Tool definitions, API schemas | `mcp-tools.json` |
+| **MCP Servers** | Tool definitions (auto from docs) | `mcp-tools.json` via `npm run generate-mcp` |
 | **Developers** | Searchable docs, code examples | `INDEX.md` + sections |
 | **RAG Systems** | Chunked content, embeddings | `chunks/` (JSON) |
-| **API Clients** | Endpoints, parameters, schemas | `api-spec.json` |
+| **API Clients** | Endpoints, parameters, schemas | `api-spec.json` via `npm run generate-api-spec` |
 | **Data Scientists** | Structured data, analytics | `metadata.json` |
 | **Documentation Sites** | Static site generation | `docusaurus/` |
 | **LLM Fine-tuning** | Q&A pairs, conversations | `training-data.jsonl` |
